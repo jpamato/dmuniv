@@ -1,0 +1,26 @@
+#perfil{
+	text-align: center;
+	padding-top: 20vh;
+	color:#6d6d6d;
+}
+
+#perfil-img{
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	margin: auto;
+	border: solid 1px;
+	background-color: white;;
+}
+
+#perfil-img img{
+	width:50px;
+}
+
+#perfil-name{
+	margin-bottom: 1px;
+}
+
+#perfil-type{
+	margin-top: 1px;
+}
