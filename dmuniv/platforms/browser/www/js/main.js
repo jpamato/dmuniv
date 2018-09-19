@@ -17,31 +17,35 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
+	// Application Constructor
+	initialize: function() {
+		document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+	},
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-	setTimeout(function(){ $("#splash").hide(); }, 2000);
-    },
+	// deviceready Event Handler
+	//
+	// Bind any cordova events here. Common events are:
+	// 'pause', 'resume', etc.
+	onDeviceReady: function() {
+		this.menuInit();
+		setTimeout(function(){ $("#splash").hide(); }, 3000);
+	},
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        /*var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+	menuInit: function(){
+		$( "#menu-btn-perfil" ).unbind('click').click( function(){	
+			perfil.load();	
+		});
+		
+		$( "#menu-btn-videos" ).unbind('click').click( function(){	
+			videos.load();	
+		});
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');*/
+		$( ".menu-btn-modulos" ).unbind('click').click( function(){
+			console.log($(this).attr('name'));
+			modulos.load();	
+		});
 
-        console.log('Received Event: ' + id);
-    }
+		$('.contenidos').hide();
+	}
 };
-
 app.initialize();

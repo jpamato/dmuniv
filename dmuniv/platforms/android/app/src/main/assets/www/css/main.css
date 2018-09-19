@@ -54,8 +54,19 @@
 }
 
 #content{
-	background-color:#dfe0e1;
 	height:80vh;
+}
+
+#content.grey{
+	background-color:#dfe0e1;
+}
+
+#content.white{
+	background-color:white;
+}
+
+#content.blue{
+	background-image: linear-gradient(135deg, #495597, #23b9d3);
 }
 
 .dm-btn {
