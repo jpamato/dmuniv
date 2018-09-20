@@ -1,5 +1,72 @@
-#videos{
-	text-align: center;
-	padding-top: 20vh;
-	color:#6d6d6d;
+#login{
+	color:white;
+	text-align:center;
+}
+
+#login-title{
+	background:#7fcce9;
+	padding: 20px;
+	margin: -15px -1em 0px -1em;
+}
+
+#login-form{
+	margin-top: 50px;
+}
+
+#login-form hr{
+	width: 60%;
+	margin-top: -10px;
+}
+
+#login-form span{
+	display:inline-block;
+	margin-left: -25px;
+}
+
+#login-form img{
+	width: 20px;
+	float: left;
+	margin-top: 11px;
+	margin-right: 20px;
+}
+
+#login-form .ui-input-text{
+	float:right;
+	border:none
+}
+
+#login-form .ui-btn{
+	border-radius: 100px;
+	background-image: linear-gradient(135deg, #495597, #23b9d3);
+	color: white;
+	width: 30vw;
+	margin: auto;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	color:    white;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color:    white;
+	opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color:    white;
+	opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color:    white;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+	color:    white;
+}
+::placeholder { /* Most modern browsers support this now. */
+	color:    white;
+}
+
+#login .cont-footer{
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	width: 100vw;
 }

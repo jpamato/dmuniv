@@ -36,7 +36,7 @@
 	background-color:rgba(255,255,255,0.8);
 }
 
-#leftpanel ul{
+ul{
 	list-style-type:none;
 }
 
@@ -54,7 +54,8 @@
 }
 
 #content{
-	height:80vh;
+	height:90vh;
+	box-shadow:5px 9px 24px 0px rgba(0,0,0,0.4);
 }
 
 #content.grey{

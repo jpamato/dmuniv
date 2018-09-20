@@ -1,5 +1,66 @@
-#videos{
+#modulos{
+	color: #224099;
 	text-align: center;
-	padding-top: 20vh;
-	color:#6d6d6d;
+}
+
+#preguntas{
+	margin: auto;
+}
+
+#respuestas{
+	text-align: left;
+	padding: 0px 24vw;
+	width: 100%;
+}
+
+#respuestas input{
+	margin:0px;
+	left:-25px;
+	width: 18px;
+	height: 18px;
+}
+
+#player{
+	width: 90%;
+	height: 90%;
+	padding: 25vh 0px;
+}
+
+.moduleImg.ui-btn{
+	width:80%;	
+    	/* padding: 0px; */
+	background: transparent;
+    	border: none;
+}
+
+.moduleImg.ui-btn button:active {
+	outline:none
+}
+
+.moduleImg.ui-btn button:focus {
+	outline:none
+}
+
+.moduleImg img{
+	width:100%;
+}
+
+#img-quest input:active {
+	outline:none
+}
+
+#img-quest input:focus {
+	outline:none
+}
+
+#modulos .cont-footer{
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	width: 100vw;
+	background-image: linear-gradient(135deg, #fff, #ccc);
+}
+
+#modulos .cont-footer img{
+	width: 100vw;
 }

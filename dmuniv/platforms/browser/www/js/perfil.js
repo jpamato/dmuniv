@@ -12,6 +12,7 @@ var perfil = (function(){
 			$("#content").addClass("grey");
 			$('.contenidos').hide();
 			$('#perfil').show();
+			$('#header-title').html("PERFIL DE USUARIO");
 			$('#leftpanel').panel( "close" );
 		}
 	};

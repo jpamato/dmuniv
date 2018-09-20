@@ -28,6 +28,9 @@ var app = {
 	// 'pause', 'resume', etc.
 	onDeviceReady: function() {
 		this.menuInit();
+		login.init();
+		videos.init();
+		modulos.init();
 		setTimeout(function(){ $("#splash").hide(); }, 3000);
 	},
 
@@ -46,6 +49,8 @@ var app = {
 		});
 
 		$('.contenidos').hide();
+
+		login.load();
 	}
 };
 app.initialize();
