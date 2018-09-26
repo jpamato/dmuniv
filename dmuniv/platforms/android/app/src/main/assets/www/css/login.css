@@ -13,6 +13,10 @@
 	margin-top: 50px;
 }
 
+#login-form input{
+	color:white;
+}
+
 #login-form hr{
 	width: 60%;
 	margin-top: -10px;
@@ -67,6 +71,7 @@
 #login .cont-footer{
 	position: absolute;
 	left: 0px;
+	top:70%;
 	bottom: 0px;
 	width: 100vw;
 }

@@ -17,6 +17,9 @@
  * under the License.
  */
 var app = {
+
+	modulosData : [],
+
 	// Application Constructor
 	initialize: function() {
 		document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -27,13 +30,21 @@ var app = {
 	// Bind any cordova events here. Common events are:
 	// 'pause', 'resume', etc.
 	onDeviceReady: function() {
-		this.menuInit();
-		login.init();
-		videos.init();
-		modulos.init();
-		setTimeout(function(){ $("#splash").hide(); }, 3000);
+		$.getJSON( "http://tumbagames.com.ar/udm/admin/getModulos.php", function( data ) {
+			console.log(data);
+			app.modulosData = data["modulos"];
+			app.appInit();
+		});			
 	},
 
+	appInit: function(){		
+		login.init();
+		videos.init(this.modulosData);
+		modulos.init();
+		this.menuInit();
+		setTimeout(function(){ $("#splash").hide(); }, 1000);
+	},
+	
 	menuInit: function(){
 		$( "#menu-btn-perfil" ).unbind('click').click( function(){	
 			perfil.load();	
@@ -54,3 +65,19 @@ var app = {
 	}
 };
 app.initialize();
+
+
+/**
+ * Shuffles array in place.
+ * @param {Array} a items An array containing the items.
+ */
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}

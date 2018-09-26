@@ -28,7 +28,7 @@
 	  * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
 	  * Enable inline JS: add 'unsafe-inline' to default-src
 		-->
-		<meta http-equiv="Content-Security-Policy" content="default-src 'self' http://www.youtube.com https://s.ytimg.com/ data: gap: ws: 'unsafe-inline' https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' http://tumbagames.com.ar http://www.youtube.com https://s.ytimg.com/ data: gap: ws: 'unsafe-inline' https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
 		<meta name="format-detection" content="telephone=no">
 		<meta name="msapplication-tap-highlight" content="no">
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -65,7 +65,7 @@
 			<div id='content' data-role="content" >
 				<div data-role="panel" data-display="overlay" id="leftpanel">
 					<ul>
-						<li id='menu-btn-perfil'>PERFIL</li>
+						<!--<li id='menu-btn-perfil'>PERFIL</li>-->
 						<li id='menu-btn-videos'>VIDEOS</li>
 						<li class='menu-btn-modulos' name='1'>M&Oacute;DULO 1</li>
 						<li class='menu-btn-modulos' name='2'>M&Oacute;DULO 2</li>
@@ -80,22 +80,22 @@
 	    <div class="ui-panel-inner"><h3>Left Panel: Overlay</h3><p>This panel is positioned on the left with the overlay display mode. The panel markup is <em>after</em> the header, content and footer in the source order.</p><p>To close, click off the panel, swipe left or right, hit the Esc key, or use the button below:</p><a href="#demo-links" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline">Close panel</a></div>-->      
 
 	    <div id="login"  class='contenidos'>
-			<h2 id='login-title'>LOG IN DE USUARIO</h2>
+		    <h2 id='login-title'>LOG IN DE USUARIO</h2>
 
-			<form id='login-form'>
-				<span><img src='img/email.png'>
-					<input type="text" name="user" id="user" placeholder='USUARIO'></span><br><hr>		
-				<span><img src='img/lock.png'>			
-					<input type="password" name="pass" id="pass" placeholder='CONTRASE&Ntilde;A'></span><br><hr>
-				<br>
-				<br>
-			<input type="submit" class='dm-btn' value="LOG IN" data-corners="true">
-			</form>
+		    <form id='login-form'>
+			    <span><img src='img/email.png'>
+				    <input type="text" name="user" id="user" placeholder='USUARIO'></span><br><hr>		
+			    <span><img src='img/lock.png'>			
+				    <input type="password" name="pass" id="pass" placeholder='CONTRASE&Ntilde;A'></span><br><hr>
+			    <br>
+			    <br>
+			    <input type="submit" class='dm-btn' value="LOG IN" data-corners="true">
+		    </form>
 
-			<img class='cont-footer' src='img/logo-line_2.png'>
+		    <img class='cont-footer' src='img/logo-line_2.png'>
 	    </div>
 
-	    <div id="perfil"  class='contenidos'>
+		<!--<div id="perfil"  class='contenidos'>
 		    <div  id="perfil-img"><img></div>
 
 		    <h2 id='perfil-name'>Autos Belgrano</h2>
@@ -103,91 +103,99 @@
 
 		    <button id='logout-btn' class='dm-btn'>LOG OUT</button>
 		    <h4 id='perfil-editar'>EDITAR</h4>
-	    </div>
+		</div>-->
 
 	    <div id="videos"  class='contenidos'>
 
 		    <ul>
-		    <li class='video-module-item'>
-			    <div class='video-module-item-title'>
-				    <h2 class='video-m-item-num'>M&oacute;dulo 1</h2>
-				    <h4 class='video-m-item-desc'>Loren ipsum dolo</h4>
-				    <h3 class='video-m-item-state'>COMPLETADO</h3>
-			    </div>
-
-			    <div class='video-module-item-progress'>
-				    <div class="donut-chart chart1">
-					    <div class="slice one"></div>
-					    <div class="slice two"></div>
-					    <div class="chart-center">
-						    <button class='video-m-play-btn'><img src='img/play2.png'></button>
+			    <li class='video-module-item'>
+				    <div class='video-module-item-title'>
+					    <div class='video-module-item-title-cont'>
+						    <h2 class='video-m-item-num'>M&oacute;dulo 1</h2>
+						    <h4 class='video-m-item-desc'>Loren ipsum dolo</h4>
+						    <h3 class='video-m-item-state'>COMPLETADO</h3>
 					    </div>
 				    </div>
-			    </div>	
-		    </li>
-		    
-		    <li class='video-module-item'>
-			    <div class='video-module-item-title'>
-				    <h2 class='video-m-item-num'>M&oacute;dulo 1</h2>
-				    <h4 class='video-m-item-desc'>Loren ipsum dolo</h4>
-				    <h3 class='video-m-item-state'>COMPLETADO</h3>
-			    </div>
 
-			    <div class='video-module-item-progress'>
-				    <div class="donut-chart chart1">
-					    <div class="slice one"></div>
-					    <div class="slice two"></div>
-					    <div class="chart-center">
-						    <button class='video-m-play-btn'><img src='img/play2.png'></button>
+				    <div class='video-module-item-progress'>
+					    <div class="donut-chart chart1">
+						    <div class="slice one"></div>
+						    <div class="slice two"></div>
+						    <div class="chart-center">
+							    <button class='video-m-play-btn'><img src='img/play2.png'></button>
+						    </div>
+					    </div>
+				    </div>	
+			    </li>
+
+			    <li class='video-module-item'>
+				    <div class='video-module-item-title'>
+					    <div class='video-module-item-title-cont'>
+						    <h2 class='video-m-item-num'>M&oacute;dulo 1</h2>
+						    <h4 class='video-m-item-desc'>Loren ipsum dolo</h4>
+						    <h3 class='video-m-item-state'>COMPLETADO</h3>
 					    </div>
 				    </div>
-			    </div>	
-		    </li>
 
-		    <li class='video-module-item'>
-			    <div class='video-module-item-title'>
-				    <h2 class='video-m-item-num'>M&oacute;dulo 1</h2>
-				    <h4 class='video-m-item-desc'>Loren ipsum dolo</h4>
-				    <h3 class='video-m-item-state'>COMPLETADO</h3>
-			    </div>
+				    <div class='video-module-item-progress'>
+					    <div class="donut-chart chart1">
+						    <div class="slice one"></div>
+						    <div class="slice two"></div>
+						    <div class="chart-center">
+							    <button class='video-m-play-btn'><img src='img/play2.png'></button>
+						    </div>
+					    </div>
+				    </div>	
+			    </li>
 
-			    <div class='video-module-item-progress'>
-				    <div class="donut-chart chart1">
-					    <div class="slice one"></div>
-					    <div class="slice two"></div>
-					    <div class="chart-center">
-						    <button class='video-m-play-btn'><img src='img/play2.png'></button>
+			    <li class='video-module-item'>
+				    <div class='video-module-item-title'>
+					    <div class='video-module-item-title-cont'>
+						    <h2 class='video-m-item-num'>M&oacute;dulo 1</h2>
+						    <h4 class='video-m-item-desc'>Loren ipsum dolo</h4>
+						    <h3 class='video-m-item-state'>COMPLETADO</h3>
 					    </div>
 				    </div>
-			    </div>	
-		    </li>
 
-		    </ui>
+				    <div class='video-module-item-progress'>
+					    <div class="donut-chart chart1">
+						    <div class="slice one"></div>
+						    <div class="slice two"></div>
+						    <div class="chart-center">
+							    <button class='video-m-play-btn'><img src='img/play2.png'></button>
+						    </div>
+					    </div>
+				    </div>	
+			    </li>
+
+			    </ui>
 	    </div>
 
 	    <div id='modulos'  class='contenidos'>
-		<div id='videoplayer' class='module-cont'>
-			<div id="player"></div>
-		</div>
+		    <div id='videoplayer' class='module-cont'>
+			    <div id="player"></div>
+		    </div>
 
-		<div id='preguntas' class='module-cont'>
-			<h2 id='pregunta'>1. &iquest;Qu&eacute; significa PC?</h2>
+		    <div id='preguntas' class='module-cont'>
+			    <h2 id='pregunta'>1. &iquest;Qu&eacute; significa PC?</h2>
 
-			<form id='respuestas'>
-				<span><input type="radio" name="moduleAns" value="0"> a) Costo por click</span><br>
-				<span><input type="radio" name="moduleAns" value="1"> b) Costo por captaci&oacute;n</span><br>
-				<span><input type="radio" name="moduleAns" value="2"> c) Costo por conversi&oacute;n</span><br>
-			</form>
-		</div>
+			    <form id='respuestas'>
+				    <div id='respuestas-cont'>
+				    <span><input type="radio" name="moduleAns" value="0"> a) Costo por click</span><br>
+				    <span><input type="radio" name="moduleAns" value="1"> b) Costo por captaci&oacute;n</span><br>
+				    <span><input type="radio" name="moduleAns" value="2"> c) Costo por conversi&oacute;n</span><br>
+				    </div>
+			    </form>
+		    </div>
 
 
-		<div id='fotos' class='module-cont'>
-			<h2 id='pregunta'>1. Selecciona la foto correcta.</h2>
-			<button class='moduleImg' value='0'><img src="img/car_int_1.png"></button>
-			<button class='moduleImg' value='1'><img src="img/car_int_2.png"></button>
-		</div>
+		    <div id='fotos' class='module-cont'>
+			    <h2 id='pregunta'>1. Selecciona la foto correcta.</h2>
+			    <button class='moduleImg' value='0'><img src="img/car_int_1.png"></button>
+			    <button class='moduleImg' value='1'><img src="img/car_int_2.png"></button>
+		    </div>
 
-		<div class='cont-footer'><img src='img/logo-footer.png'></div>
+		    <div class='cont-footer'><img src='img/logo-footer.png'></div>
 
 	    </div>
 
@@ -196,11 +204,11 @@
 
 				</div>
 
-			<!--	<div id='footer' data-role="footer" class="ui-bar">				
-					<span id='footer-btn-back' class='footer-btn' href="index.html" data-role="button" ><i class='fa fa-angle-left'></i></span>
-					<span id='footer-btn-up' class='footer-btn' href="index.html" data-role="button" ><i class='fa fa-arrow-circle-up'></i></span>
-					<span id='footer-btn-next' class='footer-btn' href="index.html" data-role="button" ><i class='fa fa-angle-right'></i></span>
-			</div>-->
+				<!--	<div id='footer' data-role="footer" class="ui-bar">				
+	    <span id='footer-btn-back' class='footer-btn' href="index.html" data-role="button" ><i class='fa fa-angle-left'></i></span>
+	    <span id='footer-btn-up' class='footer-btn' href="index.html" data-role="button" ><i class='fa fa-arrow-circle-up'></i></span>
+	    <span id='footer-btn-next' class='footer-btn' href="index.html" data-role="button" ><i class='fa fa-angle-right'></i></span>
+	    </div>-->
 
 
 			</div>

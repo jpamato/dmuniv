@@ -8,9 +8,16 @@
 }
 
 #respuestas{
+	text-align: center;
+	/* padding: 0px 24vw; */
+	width: 60%;
+	max-width: 250px;
+	margin: auto;
+}
+
+#respuestas-cont{
 	text-align: left;
-	padding: 0px 24vw;
-	width: 100%;
+	margin: auto;
 }
 
 #respuestas input{
@@ -27,10 +34,11 @@
 }
 
 .moduleImg.ui-btn{
-	width:80%;	
-    	/* padding: 0px; */
+	width: 80%;
+	max-width: 500px;
+	/* padding: 0px; */
 	background: transparent;
-    	border: none;
+	border: none;
 }
 
 .moduleImg.ui-btn button:active {
@@ -45,6 +53,12 @@
 	width:100%;
 }
 
+#fotos{
+	max-width: 800px;
+	text-align: center;
+	margin: auto;
+}
+
 #img-quest input:active {
 	outline:none
 }
@@ -56,11 +70,12 @@
 #modulos .cont-footer{
 	position: absolute;
 	left: 0px;
+	top: 72%;
 	bottom: 0px;
-	width: 100vw;
+	width: 100%;
 	background-image: linear-gradient(135deg, #fff, #ccc);
 }
 
 #modulos .cont-footer img{
-	width: 100vw;
+	width: 100%;
 }

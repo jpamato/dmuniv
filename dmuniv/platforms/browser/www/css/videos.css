@@ -13,7 +13,14 @@
 	/* background: green; */
 	color: white;
 	line-height: 0px;
+	text-align: right;
+	width: 48%;
+}
+
+.video-module-item-title-cont{
+	float: right;
 	text-align: left;
+	padding-right: 2%;
 }
 
 .video-m-item-state{
@@ -22,8 +29,9 @@
 }
 
 .video-module-item-progress {
-	width: 50%;
-	float: right;	
+	width: 48%;
+	float: right;
+	margin-left: 2%;
 }
 
 .donut-chart {
