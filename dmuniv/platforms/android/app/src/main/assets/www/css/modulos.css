@@ -67,6 +67,80 @@
 	outline:none
 }
 
+#summary{
+	padding: 70px 40px 0px 40px;
+}
+
+#summary #correct{
+	float:right;
+	color:chartreuse;
+	line-height: 0px;
+	text-align: left;
+	margin: 0px;
+}
+
+#summary #incorrect{
+	float:left;
+	color:red;
+	line-height: 0px;
+	text-align: left;
+	margin: -50px 0px 0px 50px;
+}
+
+
+#module-progress {
+	width: 48%;
+	//margin-left: 2%;
+	text-align: center;
+	margin: auto;
+}
+
+.donut-chart.chart2 {
+	width: 200px;
+	height: 200px;
+	background: grey;
+}
+.donut-chart.chart2.done{
+	background: chartreuse;
+}
+.donut-chart.chart2 .slice.one {
+	clip: rect(0 200px 100px 0);
+	-webkit-transform: rotate(270deg);
+	transform: rotate(270deg);
+	background:white;
+}
+.donut-chart.chart2 .slice.one.done{
+	background:red;
+}
+.donut-chart.chart2 .slice.two {
+	clip: rect(0 100px 200px 0);
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+	background: white;
+}
+.donut-chart.chart2 .slice.two.done{
+	background: red;
+}
+.donut-chart.chart2 .slice.two.done.complete{
+	background: chartreuse;
+}
+.donut-chart.chart2 .chart-center {
+	top: 20px;
+	left: 20px;
+	width: 160px;
+	height: 160px;
+	background: #303030;
+}
+.donut-chart.chart2 .chart-center.blue{
+	background-image: linear-gradient(135deg, #495597, #23b9d3);
+}
+.donut-chart.chart2 .chart-center span {
+	font-size: 40px;
+	line-height: 180px;
+	color: #50c690;
+}
+
+
 #modulos .cont-footer{
 	position: absolute;
 	left: 0px;
@@ -78,4 +152,8 @@
 
 #modulos .cont-footer img{
 	width: 100%;
+}
+
+#modulos .cont-footer.summary{
+	background: transparent;
 }

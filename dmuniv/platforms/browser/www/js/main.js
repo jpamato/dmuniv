@@ -39,8 +39,8 @@ var app = {
 
 	appInit: function(){		
 		login.init();
-		videos.init(this.modulosData);
 		modulos.init();
+		videos.init(this.modulosData);
 		this.menuInit();
 		setTimeout(function(){ $("#splash").hide(); }, 1000);
 	},
@@ -80,4 +80,21 @@ function shuffle(a) {
         a[j] = x;
     }
     return a;
+}
+
+function SetCakePercent(percent,slice1,slice2){
+	if(percent<=50){
+		let val = 180+percent*0.01*360;
+		slice2.css("-webkit-transform","rotate("+val+"deg)");
+		slice2.css("transform","rotate("+val+"deg)");
+		slice1.css("-webkit-transform","rotate(270deg)");
+		slice1.css("transform","rotate(270deg)");
+	}else{
+		let val = 270+(percent-50)*0.02*180;
+		slice2.addClass("complete");
+		slice2.css("-webkit-transform","rotate(180deg)");
+		slice2.css("transform","rotate(180deg)");
+		slice1.css("-webkit-transform","rotate("+val+"deg)");
+		slice1.css("transform","rotate("+val+"deg)");
+	}
 }

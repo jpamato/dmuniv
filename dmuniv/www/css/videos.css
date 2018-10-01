@@ -25,6 +25,13 @@
 
 .video-m-item-state{
 	margin-top:10px;
+}
+
+.video-m-item-state.unviewed{
+	color:white;
+}
+
+.video-m-item-state.viewed{
 	color:chartreuse;
 }
 
@@ -58,18 +65,35 @@
 .donut-chart.chart1 {
 	width: 100px;
 	height: 100px;
-	background: red;
+	background: grey;
+}
+.donut-chart.chart1.done{
+	background: green;
 }
 .donut-chart.chart1 .slice.one {
 	clip: rect(0 100px 50px 0);
-	-webkit-transform: rotate(90deg);
-	transform: rotate(90deg);
-	background:green;
+	-webkit-transform: rotate(270deg);
+	transform: rotate(270deg);
+	background:white;
+}
+.donut-chart.chart1 .slice.one.done{
+	background:red;
 }
 .donut-chart.chart1 .slice.two {
 	clip: rect(0 50px 100px 0);
-	-webkit-transform: rotate(270deg);
-	transform: rotate(270deg);
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+	background: white;
+}
+
+.donut-chart.chart1 .slice.two.complete {
+	background: grey;
+}
+
+.donut-chart.chart1 .slice.two.done{
+	background: red;
+}
+.donut-chart.chart1 .slice.two.done.complete{
 	background: green;
 }
 .donut-chart.chart1 .chart-center {

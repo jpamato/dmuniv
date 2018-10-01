@@ -11,6 +11,9 @@ var modulos = (function(){
 	var respuestasTxt;
 	var respuestasImg;
 
+	var estadoModulos = [];
+	var estadoModulo;
+
 	function LoadVideo(vId) {
 		player = new YT.Player('player', {
 			width: screen.width,
@@ -44,6 +47,32 @@ var modulos = (function(){
 		}
 	}
 
+	function setImgOptions(){
+		fotos
+
+		respuestasImg = [];
+		for(let i=0;i<2;i++){
+			let r = {
+				src:moduleData[questIndex]["imagen"+(i+1)],
+				val:i==0
+			}
+			console.log(r);
+			respuestasImg.push(r);
+		}
+		shuffle(respuestasImg);
+
+		var html="";
+		for(let i=0;i<2;i++)
+			html+="<button class='moduleImg' value='"+i+"'><img src='"+respuestasImg[i]["src"]+"'></button>";
+
+		$("#img-cont").html(html);
+
+		$("#fotos").show();
+		console.log(moduleData[questIndex]["id"]+". "+moduleData[questIndex]["pregunta"]);
+		$("#fotos .pregunta").text((questIndex+1)+". "+moduleData[questIndex]["pregunta"]);
+		SetImgButtons();
+	}
+
 	function setTextOptions(){
 		respuestasTxt = [];
 		for(let i=0;i<3;i++){
@@ -58,59 +87,114 @@ var modulos = (function(){
 
 		var html="";
 		letter = ["a","b","c"];
-		for(let i=0;i<3;i++){
+		for(let i=0;i<3;i++)
 			html+="<span><div class='ui-radio'><input type='radio' name='moduleAns' value='"+i+"'></div> "+letter[i]+") "+respuestasTxt[i]["text"]+"</span><br>";
 
-			$("#respuestas-cont").html(html);
-		}
+		$("#respuestas-cont").html(html);
 
 		$("#preguntas").show();
 		console.log(moduleData[questIndex]["id"]+". "+moduleData[questIndex]["pregunta"]);
-		$("#pregunta").text(moduleData[questIndex]["id"]+". "+moduleData[questIndex]["pregunta"]);
+		$("#preguntas .pregunta").text((questIndex+1)+". "+moduleData[questIndex]["pregunta"]);
 		SetRadioButtons();
 	}
 
-	function SetRadioButtons(){
-			$('input[type=radio][name=moduleAns]').change(function() {
-				console.log(respuestasTxt);
-				if (respuestasTxt[$(this).val()]["val"]) {
-					$(this).parents('span').css("background","chartreuse");
+	function SetImgButtons(){
+			$(".moduleImg").unbind('click').click( function(){	
+				if (respuestasImg[$(this).val()]["val"]) {
+					$(this).css("background","chartreuse");
+					estadoModulo["correct"]++;
 				}else{
-					$(this).parents('span').css("background","red");
-					$('input[type=radio][name=moduleAns]').each(function(){
-						if(respuestasTxt[$(this).val()]["val"]){
-							$(this).parents('span').css("background","aquamarine");
+					$(this).css("background","red");
+					$(".moduleImg").each(function(){
+						if(respuestasImg[$(this).val()]["val"]){
+							$(this).css("background","aquamarine");
 						}
 					});
 				}
-				$("#respuestas").css("pointer-events","none");
-				setTimeout(function(){
-					$("#respuestas").css("pointer-events","auto");
-					$('input[type=radio][name=moduleAns]').each(function(){
-						$(this).parents('span').css("background","white");
-						$(this).prop( "checked", false );
+			questIndex++;
+			estadoModulo["questIndex"] = questIndex;
+			console.log("qIndex: "+questIndex);
+			$(".moduleImg").css("pointer-events","none");
+			setTimeout(function(){
+					$(".moduleImg").css("pointer-events","auto");					
+					$(".moduleImg").each(function(){
+						$(this).css("background","transparent");
 					});
 					setPregunta();
 				},3000);
 			});
+
 	}
 
-	function setImgOptions(){
-
+	function SetRadioButtons(){
+		$('input[type=radio][name=moduleAns]').change(function() {
+			console.log(respuestasTxt);
+			if (respuestasTxt[$(this).val()]["val"]) {
+				$(this).parents('span').css("background","chartreuse");
+				estadoModulo["correct"]++;
+			}else{
+				$(this).parents('span').css("background","red");
+				$('input[type=radio][name=moduleAns]').each(function(){
+					if(respuestasTxt[$(this).val()]["val"]){
+						$(this).parents('span').css("background","aquamarine");
+					}
+				});
+			}
+			questIndex++;
+			estadoModulo["questIndex"] = questIndex;
+			console.log("qIndex: "+questIndex);
+			$("#respuestas").css("pointer-events","none");
+			setTimeout(function(){
+				$("#respuestas").css("pointer-events","auto");
+				$('input[type=radio][name=moduleAns]').each(function(){
+					$(this).parents('span').css("background","white");
+					$(this).prop( "checked", false );
+				});
+				setPregunta();
+			},3000);
+		});
 	}
 
 	function setPregunta(){
-		$('#header-title').html("M1 | PREGUNTA "+moduleData[questIndex]["id"]);
-		console.log("a:"+moduleData[questIndex]["imagen1"].length);
-		if(moduleData[questIndex]["imagen1"].length>0){
-			$("#preguntas").hide();			
-			setImgOptions();			
+		if(questIndex<estadoModulo["cantQuest"]){
+			$('#header-title').html("M"+module["id"]+" | PREGUNTA "+(questIndex+1));
+			console.log("a:"+moduleData[questIndex]["imagen1"].length);
+			if(moduleData[questIndex]["imagen1"].length>0){
+				$("#preguntas").hide();			
+				setImgOptions();			
+			}else{
+				$("#fotos").hide();
+				setTextOptions();			
+			}
 		}else{
+			$("#content").removeClass("white");
+			$("#content").addClass("blue");
+			$("#preguntas").hide();			
 			$("#fotos").hide();
-			setTextOptions();			
+			$("#summary").show();
+
+			$('#header-title').html("M"+module["id"]+" | MI PROGRESO");
+
+			$("#modulos .cont-footer").addClass("summary");
+
+			$("#modulos .cont-footer img").attr("src","img/logo-footer_2.png");
+
+			$("#summary #correct").text();
+			$("#summary #incorrect").text();
+
+			let elem1 = $("#module-progress .slice.one");
+			let elem2 = $("#module-progress .slice.two");
+			elem2.removeClass("complete");
+			let correct = 100 * estadoModulo["correct"]/estadoModulo["cantQuest"];
+
+			$("#summary #correct").html("<h3><b>"+correct+"%</b></h3><h5>ACERTADAS</h5>");
+			$("#summary #incorrect").html("<h3><b>"+(100-correct)+"%</b></h3><h5>ERRADAS</h5>");
+
+			console.log("correct: "+correct);
+			SetCakePercent(correct,elem1,elem2);
 		}
-		
-		questIndex++;
+
+
 	}
 
 	function ShowModule(){
@@ -119,36 +203,14 @@ var modulos = (function(){
 			setPregunta();			
 		}else{
 			$("#videoplayer").show();
-			$('#header-title').html("M&Oacute;DULO 1");
+			$('#header-title').html("M&Oacute;DULO "+module["id"]);
 			LoadVideo(module["video"]);
 		}
 	}
 
 	return {//funcion de inicio de la aplicación
-		init : function(){		
-
-			$(".moduleImg").unbind('click').click( function(){	
-				if ($(this).val() == '0') {
-					$(this).css("background","chartreuse");
-				}else{
-					$(this).css("background","red");
-					$(".moduleImg").each(function(){
-						if($(this).val()==0){
-							$(this).css("background","aquamarine");
-						}
-					});
-				}
-				$(".moduleImg").css("pointer-events","none");
-				setTimeout(function(){
-					$(".moduleImg").css("pointer-events","auto");					
-					$('#fotos').hide();
-					$('#preguntas').show();
-					$(".moduleImg").each(function(){
-						$(this).css("background","transparent");
-					});
-				},3000);
-			});
-
+		init : function(){
+			$('#summary').hide();		
 		},
 
 		load : function(m){
@@ -158,10 +220,25 @@ var modulos = (function(){
 				console.log(data);
 				moduleData = data["preguntas"];
 
-				questIndex = 0;
+				estadoModulo = estadoModulos.find(function (obj) {
+					return obj.id === m["id"];
+				});
 
-				$("#content").removeClass();
-				$("#content").addClass("ui-content");
+				if(estadoModulo==undefined){
+					estadoModulo = {id:m["id"],questIndex:0,cantQuest:moduleData.length,correct:0};
+					estadoModulos.push(estadoModulo);
+					console.log("aca1: "+estadoModulo["id"]);
+					estadoModulo = estadoModulos.find(function (obj) {
+						return obj.id === m["id"];
+					});
+				}
+
+				console.log(estadoModulos);
+
+				questIndex = estadoModulo["questIndex"];
+				console.log(questIndex);
+
+				$("#content").removeClass("blue");
 				$("#content").addClass("white");
 				$('.contenidos').hide();
 
@@ -169,6 +246,12 @@ var modulos = (function(){
 				$('#leftpanel').panel( "close" );
 				ShowModule();
 			});		
+		},
+
+		getModuleState : function(id){
+			return estadoModulos.find(function (obj) {
+				return obj.id === id;
+			});
 		}
 	};
 })();
