@@ -1,6 +1,6 @@
 var modulos = (function(){
 
-	var videoDone = true;
+	var videoDone = false;
 	var player;
 
 	var module;
@@ -13,6 +13,14 @@ var modulos = (function(){
 
 	var estadoModulos = [];
 	var estadoModulo;
+
+	function Reset(){
+		videoDone=false;
+		module = undefined;
+		moduleData = undefined;
+		estadoModulos = undefined;
+		questIndex = 0;
+	}
 
 	function LoadVideo(vId) {
 		player = new YT.Player('player', {
@@ -212,6 +220,8 @@ var modulos = (function(){
 		init : function(){
 			$('#summary').hide();		
 		},
+
+		reset : Reset,
 
 		load : function(m){
 			module = m;

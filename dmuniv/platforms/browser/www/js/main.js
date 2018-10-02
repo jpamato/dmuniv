@@ -41,11 +41,25 @@ var app = {
 		login.init();
 		modulos.init();
 		videos.init(this.modulosData);
-		this.menuInit();
+		this.menuInit(this.modulosData);
 		setTimeout(function(){ $("#splash").hide(); }, 1000);
 	},
 	
-	menuInit: function(){
+	appExit: function(){
+		modulos.reset();
+	},
+
+	menuInit: function(modulosData){
+
+		let html = "<li id='menu-btn-videos'>VIDEOS</li>";
+
+		for(let i=0;i<modulosData.length;i++)
+			html+="<li class='menu-btn-modulos' name='"+modulosData[i]["id"]+"'>M&Oacute;DULO "+(i+1)+"</li>";
+
+		html+="<li id='menu-btn-resultados'>RESULTADOS</li><li id='menu-btn-salir'>SALIR</li>";
+
+		$("#leftpanel ul").html(html);
+
 		$( "#menu-btn-perfil" ).unbind('click').click( function(){	
 			perfil.load();	
 		});
@@ -55,8 +69,15 @@ var app = {
 		});
 
 		$( ".menu-btn-modulos" ).unbind('click').click( function(){
-			console.log($(this).attr('name'));
-			modulos.load();	
+			let id = $(this).attr('name');
+			let moduloData = modulosData.find(function (obj) {
+				return obj.id === id;
+			});
+			modulos.load(moduloData);
+		});
+
+		$( "#menu-btn-salir" ).unbind('click').click( function(){	
+			app.appExit();	
 		});
 
 		$('.contenidos').hide();
