@@ -29,24 +29,29 @@
 }
 
 .ui-panel{
-	top: 6.5vh;
-	min-height: 84vh;
+	top: 5.1vh;
+	min-height: 94%;
 }
 
 #leftpanel{
-	background-color:rgba(255,255,255,0.8);
+	background-color: rgba(255,255,255,0.9);
+    margin-top: -45px;
+    height: 100%;
 }
 
 ul{
 	list-style-type:none;
+	    margin: 0px;
+    padding: 20px;
 }
 
 #leftpanel li{
+	padding: 23px 0px;
 	color: #224099;
-	padding: 15px 0px;
 	border: 1px 1px solid;
 	border-style: none none solid none;
 	border-width: 0.05px;
+	font-size: 1.3em;
 	/* border-block-start-style: solid; */
 	/* border-block-start-width: 1px; */
 	/* border-block-end-width: 5px; */

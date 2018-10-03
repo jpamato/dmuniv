@@ -77,7 +77,7 @@ var app = {
 		});
 
 		$( "#menu-btn-salir" ).unbind('click').click( function(){	
-			app.appExit();	
+			//app.appExit();	
 		});
 
 		$('.contenidos').hide();

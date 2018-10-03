@@ -24,8 +24,9 @@ var modulos = (function(){
 
 	function LoadVideo(vId) {
 		player = new YT.Player('player', {
-			width: screen.width,
-			height: screen.width * 390 / 640,
+			
+			//width: screen.width,
+			//height: screen.width * 390 / 640,
 			playerVars: {
 				'autoplay': 1,
 				'controls': 1, 
