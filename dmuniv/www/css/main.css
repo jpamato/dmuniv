@@ -10,6 +10,28 @@
 	padding-top: 41vh;
 }
 
+@font-face {
+    font-family: 'OpenSans';
+    src: url('fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSans-Light';
+    src: url('fonts/OpenSans-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSans-Bold';
+    src: url('fonts/OpenSans-Semibold.ttf') format('truetype');
+}
+
+body
+{
+	font-family:'OpenSans';
+}
+
 #splash img{
 	width:35vh;
 }
@@ -112,3 +134,37 @@ button.ui-btn{
 }
 
 
+
+
+#navigator
+{
+	text-align:center;
+	height:30px;
+	width:100%;
+	margin-top: 12px;
+	margin-bottom: 0px;
+}
+#navigator ul{
+	list-style: none;
+	padding: 0px;
+	margin: 8px 0px 8px 0px;
+}
+
+#navigator .dots {
+	display: inline-block;
+	width: 1.3vh;
+	height: 1.3vh;
+	border-radius: 1.3vh;
+	margin-right:0.2vh;
+	margin-left:0.2vh;
+	text-indent: -999em;
+	background-color: #BEBEBE;
+	vertical-align:middle;
+}
+
+#navigator .dots.done{
+	width: 1.3vh;
+	height: 1.3vh;
+	border-radius: 1.3vh;
+	background-color: #224099;
+}

@@ -2,13 +2,27 @@
 	text-align: center;
 	padding-top: 5vh;
 }
+#videos h4
+{
+	font-family: 'OpenSans-Light';
+    font-size: 1.1em;
+    letter-spacing: 0.05em;
+    line-height: 0.1em;
+}
+#videos h2
+{
+	font-family: 'OpenSans-Bold';
+    font-size: 2em;
+    margin-bottom: 31px;
+}
+
 .html5-video-player {
 	width:800px;
 	height:600px;
 }
 .video-module-item{
-	padding: 10px 0px;
-	height: 100px;
+	padding: 0px;
+    height: 150px;
 }
 
 .video-module-item-title{	
@@ -17,7 +31,7 @@
 	color: white;
 	line-height: 0px;
 	text-align: right;
-	width: 48%;
+	width: 46%;
 }
 
 .video-module-item-title-cont{
