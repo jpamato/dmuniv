@@ -5,8 +5,8 @@
 #modulos h2
 {
 	font-family: 'OpenSans-Bold';
-   font-size: 1.7em;
-    margin-bottom: 31px;
+	font-size: 1.7em;
+	margin-bottom: 31px;
 }
 #preguntas{
 	margin: auto;
@@ -16,7 +16,7 @@
 #respuestas{
 	text-align: center;
 	/* padding: 0px 24vw; */
-	
+
 	max-width: 80%;
 	margin: auto;
 }
@@ -31,7 +31,7 @@
 }
 #respuestas input{
 	margin: 11px;
-    left: -45px;
+	left: -45px;
 	width: 18px;
 	height: 18px;
 }
@@ -110,6 +110,8 @@
 	width: 200px;
 	height: 200px;
 	background: grey;
+	margin:auto;
+	z-index:1;
 }
 .donut-chart.chart2.done{
 	background: chartreuse;
@@ -153,12 +155,29 @@
 
 
 #modulos .cont-footer{
+	margin: auto;
 	position: absolute;
 	left: 0px;
-	top: 72%;
+	right: 0px;
+	/* top: 72%; */
 	bottom: 0px;
-	width: 100%;
+	width: 400px;
+	/* height: 150px; */
 	background-image: linear-gradient(135deg, #fff, #ccc);
+	z-index:-1;
+}
+
+#modulos .cont-footer.summary{
+	margin: auto;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	/* top: 72%; */
+	bottom: 0px;
+	width: 400px;
+	/* height: 150px; */
+	background-image: linear-gradient(135deg, #fff, #ccc);
+	z-index:0;
 }
 
 #modulos .cont-footer img{
@@ -171,7 +190,7 @@
 
 #result-signal
 {
-    text-align: center;
-    width: 100%;
-    height: 246px;
+	text-align: center;
+	width: 100%;
+	height: 246px;
 }

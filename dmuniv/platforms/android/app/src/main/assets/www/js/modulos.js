@@ -252,6 +252,11 @@ var modulos = (function(){
 				$("#content").removeClass("blue");
 				$("#content").addClass("white");
 				$('.contenidos').hide();
+				$("#modulos .cont-footer").removeClass("summary");
+				$("#modulos .cont-footer img").attr("src","img/logo-footer.png");
+
+				$("#result-signal").hide();
+				$("#navigator").hide();
 
 				$('#modulos').show();
 				$('#leftpanel').panel( "close" );
