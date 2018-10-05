@@ -194,3 +194,19 @@
 	width: 100%;
 	height: 246px;
 }
+
+.answer_correct
+{
+	color:white;
+	background-color:#00B22D;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.answer_incorrect
+{
+	color:white;
+	background-color:#FF2B2B;
+	padding-top:10px;
+	padding-bottom:10px;
+}
