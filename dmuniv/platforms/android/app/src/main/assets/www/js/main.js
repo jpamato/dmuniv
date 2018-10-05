@@ -119,3 +119,22 @@ function SetCakePercent(percent,slice1,slice2){
 		slice1.css("transform","rotate("+val+"deg)");
 	}
 }
+
+function CreateNavigator(divId,dotsNumber){
+	let html = "<ul><div class='dots done' id='p0'></div>";
+	for(let i=1;i<dotsNumber;i++)
+		html+="<div class='dots' id='p"+i+"'></div>";	
+
+	html+="</ul>";
+	$("#navigator").html(html);
+	console.log("aca");
+}
+
+function SetNavigatorPos(divId,dotNumber){
+	$("#navigator .dots").each(function( index ) {
+		if(index==dotNumber)
+			$( this ).addClass("done");
+		else
+			$( this ).removeClass("done");
+	});
+}

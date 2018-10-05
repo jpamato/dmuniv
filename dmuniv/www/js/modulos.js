@@ -109,11 +109,14 @@ var modulos = (function(){
 
 	function SetImgButtons(){
 			$(".moduleImg").unbind('click').click( function(){	
+				$("#result-signal").show();
 				if (respuestasImg[$(this).val()]["val"]) {
 					$(this).css("background","chartreuse");
+					$("#result-signal img").attr("src","img/correcto.png");
 					estadoModulo["correct"]++;
 				}else{
 					$(this).css("background","red");
+					$("#result-signal img").attr("src","img/incorrecto.png");
 					$(".moduleImg").each(function(){
 						if(respuestasImg[$(this).val()]["val"]){
 							$(this).css("background","aquamarine");
@@ -129,6 +132,7 @@ var modulos = (function(){
 					$(".moduleImg").each(function(){
 						$(this).css("background","transparent");
 					});
+					$("#result-signal").hide();
 					setPregunta();
 				},3000);
 			});
@@ -138,14 +142,20 @@ var modulos = (function(){
 	function SetRadioButtons(){
 		$('input[type=radio][name=moduleAns]').change(function() {
 			console.log(respuestasTxt);
+			$("#result-signal").show();
 			if (respuestasTxt[$(this).val()]["val"]) {
-				$(this).parents('span').css("background","chartreuse");
+				//$(this).parents('span').css("background","chartreuse");
+				$(this).parents('span').addClass("answer_correct");
+				$("#result-signal img").attr("src","img/correcto.png");
 				estadoModulo["correct"]++;
 			}else{
-				$(this).parents('span').css("background","red");
+				//$(this).parents('span').css("background","red");
+				$(this).parents('span').addClass("answer_incorrect");
+				$("#result-signal img").attr("src","img/incorrecto.png");
 				$('input[type=radio][name=moduleAns]').each(function(){
 					if(respuestasTxt[$(this).val()]["val"]){
-						$(this).parents('span').css("background","aquamarine");
+						//$(this).parents('span').css("background","aquamarine");
+						$(this).parents('span').addClass("answer_correct");
 					}
 				});
 			}
@@ -156,15 +166,20 @@ var modulos = (function(){
 			setTimeout(function(){
 				$("#respuestas").css("pointer-events","auto");
 				$('input[type=radio][name=moduleAns]').each(function(){
-					$(this).parents('span').css("background","white");
+					//$(this).parents('span').css("background","white");
+					$(this).parents('span').removeClass("answer_correct");
+					$(this).parents('span').removeClass("answer_incorrect");
 					$(this).prop( "checked", false );
 				});
+				$("#result-signal").hide();
 				setPregunta();
 			},3000);
 		});
 	}
 
 	function setPregunta(){
+		$("#navigator").show();
+		SetNavigatorPos("module-nav",estadoModulo["questIndex"]);
 		if(questIndex<estadoModulo["cantQuest"]){
 			$('#header-title').html("M"+module["id"]+" | PREGUNTA "+(questIndex+1));
 			console.log("a:"+moduleData[questIndex]["imagen1"].length);
@@ -180,6 +195,7 @@ var modulos = (function(){
 			$("#content").addClass("blue");
 			$("#preguntas").hide();			
 			$("#fotos").hide();
+			$("#navigator").hide();
 			$("#summary").show();
 
 			$('#header-title').html("M"+module["id"]+" | MI PROGRESO");
@@ -247,7 +263,8 @@ var modulos = (function(){
 				console.log(estadoModulos);
 
 				questIndex = estadoModulo["questIndex"];
-				console.log(questIndex);
+				console.log(questIndex);				
+				videoDone = questIndex>0;
 
 				$("#content").removeClass("blue");
 				$("#content").addClass("white");
@@ -256,6 +273,8 @@ var modulos = (function(){
 				$("#modulos .cont-footer img").attr("src","img/logo-footer.png");
 
 				$("#result-signal").hide();
+				CreateNavigator("module-nav",estadoModulo["cantQuest"]);
+				SetNavigatorPos("module-nav",estadoModulo["questIndex"]);
 				$("#navigator").hide();
 
 				$('#modulos').show();

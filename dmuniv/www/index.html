@@ -7,9 +7,9 @@
 	to you under the Apache License, Version 2.0 (the
 	"License"); you may not use this file except in compliance
 	with the License.  You may obtain a copy of the License at
-
+	
 	http://www.apache.org/licenses/LICENSE-2.0
-
+	
 	Unless required by applicable law or agreed to in writing,
 	software distributed under the License is distributed on an
 	"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -42,26 +42,26 @@
 	  <link rel="stylesheet" type="text/css" href="css/perfil.css">
 	  <link rel="stylesheet" type="text/css" href="css/videos.css">
 	  <link rel="stylesheet" type="text/css" href="css/modulos.css">
-
+	  
 	  <title>Hello World</title>
 	</head>
 	<body>
-
+		
 		<div data-role="page">
-
+			
 			<div id='splash'>
 				<img src='img/logo.png'>
 			</div>
-
+			
 			<div id='home'>
 				<!--	<img src='img/logo.png'>-->
 			</div>
-
+			
 			<div id='header' data-role="header" data-position="fixed">				
 				<a href='#leftpanel' id='hamburguer'><i class='fa fa-bars'></i></a>
 				<h1 id='header-title'>PERFIL DE USUARIO</h1>
 			</div>
-
+			
 			<div id='content' data-role="content" >
 				<div data-role="panel" data-display="overlay" id="leftpanel">
 					<ul>
@@ -73,15 +73,15 @@
 						<li class='menu-btn-modulos' name='4'>M&Oacute;DULO 4</li>
 						<li id='menu-btn-resultados'>RESULTADOS</li>
 						<li id='menu-btn-salir'>SALIR</li>
-
+						
 					</ul>
 				</div><!-- /panel -->
 				<!--	<div data-role="panel" id="leftpanel3" data-position="left" data-display="overlay" data-theme="a" class="ui-panel ui-panel-position-left ui-panel-display-overlay ui-body-a ui-panel-animate ui-panel-open">
 	    <div class="ui-panel-inner"><h3>Left Panel: Overlay</h3><p>This panel is positioned on the left with the overlay display mode. The panel markup is <em>after</em> the header, content and footer in the source order.</p><p>To close, click off the panel, swipe left or right, hit the Esc key, or use the button below:</p><a href="#demo-links" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline">Close panel</a></div>-->      
-
+	    
 	    <div id="login"  class='contenidos'>
 		    <h2 id='login-title'>LOG IN DE USUARIO</h2>
-
+		    
 		    <form id='login-form'>
 			    <span><img src='img/email.png'>
 				    <input type="text" name="user" id="user" placeholder='USUARIO'></span><br><hr>		
@@ -91,22 +91,22 @@
 			    <br>
 			    <input type="submit" class='dm-btn' value="LOG IN" data-corners="true">
 		    </form>
-
+		    
 		    <img class='cont-footer' src='img/logo-line_2.png'>
 	    </div>
-
+	    
 	    <!--<div id="perfil"  class='contenidos'>
 	     <div  id="perfil-img"><img></div>
-
+	     
 	     <h2 id='perfil-name'>Autos Belgrano</h2>
 	     <h4 id='perfil-type'>Concesionaria</h4>
-
+	     
 	     <button id='logout-btn' class='dm-btn'>LOG OUT</button>
 	     <h4 id='perfil-editar'>EDITAR</h4>
 	     </div>-->
-
+	     
 	     <div id="videos"  class='contenidos'>
-
+		     
 		     <ul>
 			     <li class='video-module-item'>
 				     <div class='video-module-item-title'>
@@ -116,7 +116,7 @@
 						     <h3 class='video-m-item-state'>COMPLETADO</h3>
 					     </div>
 				     </div>
-
+				     
 				     <div class='video-module-item-progress'>
 					     <div class="donut-chart chart1">
 						     <div class="slice one"></div>
@@ -127,7 +127,7 @@
 					     </div>
 				     </div>	
 			     </li>
-
+			     
 			     <li class='video-module-item'>
 				     <div class='video-module-item-title'>
 					     <div class='video-module-item-title-cont'>
@@ -136,7 +136,7 @@
 						     <h3 class='video-m-item-state'>COMPLETADO</h3>
 					     </div>
 				     </div>
-
+				     
 				     <div class='video-module-item-progress'>
 					     <div class="donut-chart chart1">
 						     <div class="slice one"></div>
@@ -147,7 +147,7 @@
 					     </div>
 				     </div>	
 			     </li>
-
+			     
 			     <li class='video-module-item'>
 				     <div class='video-module-item-title'>
 					     <div class='video-module-item-title-cont'>
@@ -156,7 +156,7 @@
 						     <h3 class='video-m-item-state'>COMPLETADO</h3>
 					     </div>
 				     </div>
-
+				     
 				     <div class='video-module-item-progress'>
 					     <div class="donut-chart chart1">
 						     <div class="slice one"></div>
@@ -167,33 +167,33 @@
 					     </div>
 				     </div>	
 			     </li>
-
+			     
 			     </ui>
 	     </div>
-
+	     
 	     <div id='modulos'  class='contenidos'>
 		     <div id='videoplayer' class='module-cont'>
 			     <div id="player"></div>
 		     </div>
-			 
-			<div id='navigator'>
-				<ul>
-					<div class="dots done" id="p0"></div>
-					<div class="dots" style="" id="p1"></div>
-					<div class="dots" style="" id="p2"></div>
-					<div class="dots" style="" id="p3"></div>
-					<div class="dots" style="" id="p4"></div>
-					<div class="dots" style="" id="p5"></div>
-					<div class="dots" style="" id="p6"></div>
-					<div class="dots" style="" id="p7"></div>
-				</ul>
-			</div>
-			
-			
-
+		     
+		     <div id='navigator'>
+			     <ul>
+				     <div class="dots done" id="p0"></div>
+				     <div class="dots" style="" id="p1"></div>
+				     <div class="dots" style="" id="p2"></div>
+				     <div class="dots" style="" id="p3"></div>
+				     <div class="dots" style="" id="p4"></div>
+				     <div class="dots" style="" id="p5"></div>
+				     <div class="dots" style="" id="p6"></div>
+				     <div class="dots" style="" id="p7"></div>
+			     </ul>
+		     </div>
+		     
+		     
+		     
 		     <div id='preguntas' class='module-cont'>
 			     <h2 class='pregunta'>1. &iquest;Qu&eacute; significa PC?</h2>
-
+			     
 			     <form id='respuestas'>
 				     <div id='respuestas-cont'>
 					     <span><input type="radio" name="moduleAns" value="0"> a) Costo por click</span><br>
@@ -202,16 +202,16 @@
 				     </div>
 			     </form>
 		     </div>
-
-
+		     
+		     
 		     <div id='fotos' class='module-cont'>
 			     <h2 class='pregunta'>1. Selecciona la foto correcta.</h2>
 			     <div id='img-cont'>
-			     <button class='moduleImg' value='0'><img src="img/car_int_1.png"></button>
-			     <button class='moduleImg' value='1'><img src="img/car_int_2.png"></button>
+				     <button class='moduleImg' value='0'><img src="img/car_int_1.png"></button>
+				     <button class='moduleImg' value='1'><img src="img/car_int_2.png"></button>
 			     </div>
 		     </div>
-
+		     
 		     <div id='summary' class='module-cont blue'>
 			     <div id='correct'></div>
 			     <div id='module-progress'>
@@ -225,29 +225,29 @@
 			     </div>
 			     <div id='incorrect'></div>
 		     </div>
-			 
-			 <div id='result-signal'>
+		     
+		     <div id='result-signal'>
 			     <img  src="img/correcto.png" />
-			 </div>
-
+		     </div>
+		     
 		     <div class='cont-footer'><img src='img/logo-footer.png'></div>
-
+		     
 	     </div>
-
-
-
-
+	     
+	     
+	     
+	     
 				</div>
-
+				
 				<!--	<div id='footer' data-role="footer" class="ui-bar">				
 	    <span id='footer-btn-back' class='footer-btn' href="index.html" data-role="button" ><i class='fa fa-angle-left'></i></span>
 	    <span id='footer-btn-up' class='footer-btn' href="index.html" data-role="button" ><i class='fa fa-arrow-circle-up'></i></span>
 	    <span id='footer-btn-next' class='footer-btn' href="index.html" data-role="button" ><i class='fa fa-angle-right'></i></span>
 	    </div>-->
-
-
+	    
+	    
 			</div>
-
+			
 			<script type="text/javascript" src="cordova.js"></script>
 			<script type="text/javascript" src="js/lib/jquery-1.11.1.min.js"></script>
 			<script type="text/javascript" src="js/lib/jquery.mobile-1.4.5.min.js"></script>
