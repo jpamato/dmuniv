@@ -18,6 +18,8 @@
  */
 var app = {
 
+	mainURL : "http://demotorescampus.com/admin/",
+
 	modulosData : [],
 
 	// Application Constructor
@@ -30,7 +32,7 @@ var app = {
 	// Bind any cordova events here. Common events are:
 	// 'pause', 'resume', etc.
 	onDeviceReady: function() {
-		$.getJSON( "http://tumbagames.com.ar/udm/admin/getModulos.php", function( data ) {
+		$.getJSON( app.mainURL+"getModulos.php", function( data ) {
 			console.log(data);
 			app.modulosData = data["modulos"];
 			app.appInit();
@@ -38,7 +40,7 @@ var app = {
 	},
 
 	appInit: function(){		
-		login.init();
+		login.init(this.mainURL+"loginUser.php");
 		modulos.init();
 		videos.init(this.modulosData);
 		this.menuInit(this.modulosData);

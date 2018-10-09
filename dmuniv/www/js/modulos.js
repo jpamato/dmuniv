@@ -243,7 +243,7 @@ var modulos = (function(){
 		load : function(m){
 			module = m;
 
-			$.getJSON( "http://tumbagames.com.ar/udm/admin/getModulo.php?id="+m["id"], function( data ) {
+			$.getJSON( "http://demotorescampus.com/admin/getModulo.php?id="+m["id"], function( data ) {
 				console.log(data);
 				moduleData = data["preguntas"];
 
