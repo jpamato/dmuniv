@@ -12,8 +12,8 @@
 #videos h2
 {
 	font-family: 'OpenSans-Bold';
-    font-size: 2em;
-    margin-bottom: 31px;
+	font-size: 1.8em;
+	margin-bottom: 31px;
 }
 
 .html5-video-player {
@@ -25,13 +25,13 @@
     height: 150px;
 }
 
-.video-module-item-title{	
+.video-module-item-title{
 	float: left;
 	/* background: green; */
 	color: white;
 	line-height: 0px;
 	text-align: right;
-	width: 46%;
+	width: 56%;
 }
 
 .video-module-item-title-cont{
@@ -53,7 +53,7 @@
 }
 
 .video-module-item-progress {
-	width: 48%;
+	width: 37%;
 	float: right;
 	margin-left: 2%;
 }
