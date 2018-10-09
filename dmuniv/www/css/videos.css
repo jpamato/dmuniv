@@ -7,13 +7,12 @@
 	font-family: 'OpenSans-Light';
     font-size: 1.1em;
     letter-spacing: 0.05em;
-    line-height: 0.1em;
+    line-height: 1.1em;
 }
 #videos h2
 {
 	font-family: 'OpenSans-Bold';
-	font-size: 1.8em;
-	margin-bottom: 31px;
+	font-size: 1.8em;	
 }
 
 .html5-video-player {
@@ -38,10 +37,11 @@
 	float: right;
 	text-align: left;
 	padding-right: 2%;
+	width: 70%;
 }
 
 .video-m-item-state{
-	margin-top:10px;
+	margin-top: -15px;
 }
 
 .video-m-item-state.unviewed{
