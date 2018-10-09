@@ -25,10 +25,22 @@ var videos = (function(){
 
 			$(".video-m-play-btn").unbind('click').click( function(){
 				let id = $(this).attr('name');
-				let moduloData = modulosData.find(function (obj) {
-					return obj.id === id;
-				});
-				modulos.load(moduloData);	
+				let estadoModulo = modulos.getModuleState(id);
+				console.log(estadoModulo);
+				if(estadoModulo!=undefined){
+					if(estadoModulo["questIndex"]<estadoModulo["cantQuest"]){
+						let moduloData = modulosData.find(function (obj) {
+							return obj.id === id;
+						});
+						modulos.load(moduloData);
+					}
+				}else{
+					let moduloData = modulosData.find(function (obj) {
+						return obj.id === id;
+					});
+					modulos.load(moduloData);
+				}
+
 			});	
 		},
 

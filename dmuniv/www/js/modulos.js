@@ -14,11 +14,17 @@ var modulos = (function(){
 	var estadoModulos = [];
 	var estadoModulo;
 
+	var correctasSet=0;
+
+	var url;
+
+	nextSet = true;
+
 	function Reset(){
 		videoDone=false;
 		module = undefined;
 		moduleData = undefined;
-		estadoModulos = undefined;
+		//estadoModulos = undefined;
 		questIndex = 0;
 	}
 
@@ -52,6 +58,9 @@ var modulos = (function(){
 	function onPlayerStateChange(event) {        
 		if(event.data === 0) {          
 			videoDone=true;
+			$.post(url+"saveResult_videos.php",{usuario_id: localStorage.user_id, modulo_id:module["id"]}, function(data, status){
+        			console.log("Data: " + data + "\nStatus: " + status);
+			});
 			ShowModule();
 		}
 	}
@@ -78,7 +87,7 @@ var modulos = (function(){
 
 		$("#fotos").show();
 		console.log(moduleData[questIndex]["id"]+". "+moduleData[questIndex]["pregunta"]);
-		$("#fotos .pregunta").text((questIndex+1)+". "+moduleData[questIndex]["pregunta"]);
+		$("#fotos .pregunta").text(moduleData[questIndex]["pregunta"]);
 		SetImgButtons();
 	}
 
@@ -103,8 +112,14 @@ var modulos = (function(){
 
 		$("#preguntas").show();
 		console.log(moduleData[questIndex]["id"]+". "+moduleData[questIndex]["pregunta"]);
-		$("#preguntas .pregunta").text((questIndex+1)+". "+moduleData[questIndex]["pregunta"]);
+		$("#preguntas .pregunta").text(moduleData[questIndex]["pregunta"]);
 		SetRadioButtons();
+	}
+
+	function SendAnswer(result){
+		$.post(url+"saveResult.php",{usuario_id: localStorage.user_id, pregunta_id:moduleData[questIndex]["id"], resultado:result}, function(data, status){
+        			console.log("Data: " + data + "\nStatus: " + status);
+		});
 	}
 
 	function SetImgButtons(){
@@ -113,10 +128,13 @@ var modulos = (function(){
 				if (respuestasImg[$(this).val()]["val"]) {
 					$(this).css("background","chartreuse");
 					$("#result-signal img").attr("src","img/correcto.png");
+					SendAnswer(1);
 					estadoModulo["correct"]++;
+					correctasSet++;
 				}else{
 					$(this).css("background","red");
 					$("#result-signal img").attr("src","img/incorrecto.png");
+					SendAnswer(0);
 					$(".moduleImg").each(function(){
 						if(respuestasImg[$(this).val()]["val"]){
 							$(this).css("background","aquamarine");
@@ -125,6 +143,7 @@ var modulos = (function(){
 				}
 			questIndex++;
 			estadoModulo["questIndex"] = questIndex;
+			localStorage.setItem("estadoModulos", JSON.stringify(estadoModulos));
 			console.log("qIndex: "+questIndex);
 			$(".moduleImg").css("pointer-events","none");
 			setTimeout(function(){
@@ -147,11 +166,14 @@ var modulos = (function(){
 				//$(this).parents('span').css("background","chartreuse");
 				$(this).parents('span').addClass("answer_correct");
 				$("#result-signal img").attr("src","img/correcto.png");
+				SendAnswer(1);
 				estadoModulo["correct"]++;
+				correctasSet++;
 			}else{
 				//$(this).parents('span').css("background","red");
 				$(this).parents('span').addClass("answer_incorrect");
 				$("#result-signal img").attr("src","img/incorrecto.png");
+				SendAnswer(0);
 				$('input[type=radio][name=moduleAns]').each(function(){
 					if(respuestasTxt[$(this).val()]["val"]){
 						//$(this).parents('span').css("background","aquamarine");
@@ -161,6 +183,7 @@ var modulos = (function(){
 			}
 			questIndex++;
 			estadoModulo["questIndex"] = questIndex;
+			localStorage.setItem("estadoModulos", JSON.stringify(estadoModulos));
 			console.log("qIndex: "+questIndex);
 			$("#respuestas").css("pointer-events","none");
 			setTimeout(function(){
@@ -179,8 +202,8 @@ var modulos = (function(){
 
 	function setPregunta(){
 		$("#navigator").show();
-		SetNavigatorPos("module-nav",estadoModulo["questIndex"]);
-		if(questIndex<estadoModulo["cantQuest"]){
+		SetNavigatorPos("module-nav",estadoModulo["questIndex"]%app.cantQSet);
+		if(questIndex%app.cantQSet!=0||questIndex==0||nextSet){
 			$('#header-title').html("M"+module["id"]+" | PREGUNTA "+(questIndex+1));
 			console.log("a:"+moduleData[questIndex]["imagen1"].length);
 			if(moduleData[questIndex]["imagen1"].length>0){
@@ -190,6 +213,7 @@ var modulos = (function(){
 				$("#fotos").hide();
 				setTextOptions();			
 			}
+			nextSet=false;
 		}else{
 			$("#content").removeClass("white");
 			$("#content").addClass("blue");
@@ -210,13 +234,16 @@ var modulos = (function(){
 			let elem1 = $("#module-progress .slice.one");
 			let elem2 = $("#module-progress .slice.two");
 			elem2.removeClass("complete");
-			let correct = 100 * estadoModulo["correct"]/estadoModulo["cantQuest"];
+			//let correct = 100 * estadoModulo["correct"]/estadoModulo["cantQuest"];
+			let correct = 100 * correctasSet/app.cantQSet;
+			
 
-			$("#summary #correct").html("<h3><b>"+correct+"%</b></h3><h5>ACERTADAS</h5>");
-			$("#summary #incorrect").html("<h3><b>"+(100-correct)+"%</b></h3><h5>ERRADAS</h5>");
+			$("#summary #correct").html("<h3><b>"+correct.toFixed(2)+"%</b></h3><h5>ACERTADAS</h5>");
+			$("#summary #incorrect").html("<h3><b>"+(100-correct).toFixed(2)+"%</b></h3><h5>ERRADAS</h5>");
 
 			console.log("correct: "+correct);
 			SetCakePercent(correct,elem1,elem2);
+			correctasSet = 0;
 		}
 
 
@@ -234,8 +261,9 @@ var modulos = (function(){
 	}
 
 	return {//funcion de inicio de la aplicación
-		init : function(){
-			$('#summary').hide();		
+		init : function(_url){
+			$('#summary').hide();
+			url = _url;
 		},
 
 		reset : Reset,
@@ -243,9 +271,11 @@ var modulos = (function(){
 		load : function(m){
 			module = m;
 
-			$.getJSON( "http://demotorescampus.com/admin/getModulo.php?id="+m["id"], function( data ) {
+			$.getJSON( url+"getModulo.php?id="+m["id"], function( data ) {
 				console.log(data);
 				moduleData = data["preguntas"];
+				console.log(moduleData);
+
 
 				estadoModulo = estadoModulos.find(function (obj) {
 					return obj.id === m["id"];
@@ -262,9 +292,15 @@ var modulos = (function(){
 
 				console.log(estadoModulos);
 
+				localStorage.setItem("estadoModulos", JSON.stringify(estadoModulos));
+				
+
 				questIndex = estadoModulo["questIndex"];
 				console.log(questIndex);				
-				videoDone = questIndex>0;
+				if(questIndex%app.cantQSet==0){
+					videoDone=false;
+					nextSet=true;
+				}
 
 				$("#content").removeClass("blue");
 				$("#content").addClass("white");
@@ -273,8 +309,9 @@ var modulos = (function(){
 				$("#modulos .cont-footer img").attr("src","img/logo-footer.png");
 
 				$("#result-signal").hide();
-				CreateNavigator("module-nav",estadoModulo["cantQuest"]);
-				SetNavigatorPos("module-nav",estadoModulo["questIndex"]);
+				CreateNavigator("module-nav",app.cantQSet);
+				console.log(estadoModulo["questIndex"]%app.cantQSet);
+				SetNavigatorPos("module-nav",estadoModulo["questIndex"]%app.cantQSet);
 				$("#navigator").hide();
 
 				$('#modulos').show();
@@ -284,6 +321,13 @@ var modulos = (function(){
 		},
 
 		getModuleState : function(id){
+
+			if(estadoModulos.length==0){
+				estadoModulos = JSON.parse(localStorage.getItem("estadoModulos"));
+				if(estadoModulos==null)
+					estadoModulos = [];
+			}
+			
 			return estadoModulos.find(function (obj) {
 				return obj.id === id;
 			});

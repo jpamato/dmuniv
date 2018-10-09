@@ -19,6 +19,7 @@
 var app = {
 
 	mainURL : "http://demotorescampus.com/admin/",
+	cantQSet : 3,
 
 	modulosData : [],
 
@@ -40,8 +41,8 @@ var app = {
 	},
 
 	appInit: function(){		
-		login.init(this.mainURL+"loginUser.php");
-		modulos.init();
+		login.init(this.mainURL);
+		modulos.init(this.mainURL);
 		videos.init(this.modulosData);
 		this.menuInit(this.modulosData);
 		setTimeout(function(){ $("#splash").hide(); }, 1000);
@@ -79,12 +80,22 @@ var app = {
 		});
 
 		$( "#menu-btn-salir" ).unbind('click').click( function(){	
-			//app.appExit();	
+			localStorage.removeItem("user_id");
+			localStorage.removeItem("estadoModulos");
+			location.reload();
 		});
 
 		$('.contenidos').hide();
 
-		login.load();
+		if(localStorage.user_id===undefined){
+			login.load();
+		}else{
+			$.post(this.mainURL+"saveNewLogin.php",{usuario_id: localStorage.user_id}, function(data, status){
+        			console.log("Data: " + data + "\nStatus: " + status);
+			});
+			videos.load();			
+		}
+			
 	}
 };
 app.initialize();
