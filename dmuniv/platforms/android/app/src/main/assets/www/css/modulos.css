@@ -22,12 +22,13 @@
 }
 
 #respuestas-cont{
-	text-align: left;
-	margin: auto;
-	font-size: 1.5em;
+    text-align: left;
+    margin: auto;
+    font-size: 1.25em;
+    line-height: 5vh;
 }
 #respuestas-cont .ui-radio{
-	margin: 1.5em 0;
+	margin: 2em 0;
 }
 #respuestas input{
 	margin: 11px;
@@ -186,6 +187,7 @@
 
 #modulos .cont-footer.summary{
 	background: transparent;
+	display:none;
 }
 
 #result-signal
@@ -193,6 +195,7 @@
 	text-align: center;
 	width: 100%;
 	height: 246px;
+	margin-top: 40px;
 }
 
 .answer_correct

@@ -152,14 +152,14 @@ button.ui-btn{
 
 #navigator .dots {
 	display: inline-block;
-	width: 1.3vh;
-	height: 1.3vh;
-	border-radius: 1.3vh;
-	margin-right:0.2vh;
-	margin-left:0.2vh;
-	text-indent: -999em;
-	background-color: #BEBEBE;
-	vertical-align:middle;
+    width: 1.3vh;
+    height: 1.3vh;
+    border-radius: 1.3vh;
+    margin-right: 0.2vh;
+    margin-left: 1.2vh;
+    text-indent: -999em;
+    background-color: #BEBEBE;
+    vertical-align: middle;
 }
 
 #navigator .dots.done{
