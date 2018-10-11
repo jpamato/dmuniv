@@ -28,38 +28,56 @@ var modulos = (function(){
 		questIndex = 0;
 	}
 
-	function LoadVideo(vId) {
+	function SetVideo(vId){
+		$("#videoplayer").html("<div id='player'></div>");
 		player = new YT.Player('player', {
-			
-			//width: screen.width,
-			//height: screen.width * 390 / 640,
-			playerVars: {
-				'autoplay': 1,
-				'controls': 1, 
-				'autohide': 1,
-				'showinfo' : 0, 
-				'rel': 0,
-				'loop': 0
-			},
-			videoId: vId,
-			events: {
-				onReady: onPlayerReady,
-				onStateChange: onPlayerStateChange
+				//width: screen.width,
+				//height: screen.width * 390 / 640,
+				playerVars: {
+					'autoplay': 1,
+					'controls': 1, 
+					'autohide': 1,
+					'showinfo' : 0, 
+					'rel': 0,
+					'loop': 0
+				},
+				videoId: vId,
+				events: {
+					onReady: onPlayerReady,
+					onStateChange: onPlayerStateChange
+				}
+			});
+	}
+
+	function LoadVideo(vId) {
+		console.log("loadvideo");
+		if(player!=undefined){
+			console.log(player["b"]["b"]["videoId"]);
+			if(player["b"]["b"]["videoId"]==vId){
+				player.playVideo();
+			}else{
+				SetVideo(vId);
 			}
-		});
+		}else{
+			SetVideo(vId);		
+		}	
 	}
 
 	// autoplay video
 	function onPlayerReady(event) {
+		console.log("playerready: ");
+		console.log(event);
 		event.target.playVideo();
 	}
 
 	// when video ends
-	function onPlayerStateChange(event) {        
+	function onPlayerStateChange(event) {
+		console.log("onPlayerStateChange: ");
+		console.log(event);
 		if(event.data === 0) {          
 			videoDone=true;
 			$.post(url+"saveResult_videos.php",{usuario_id: localStorage.user_id, modulo_id:module["id"]}, function(data, status){
-        			console.log("Data: " + data + "\nStatus: " + status);
+				console.log("Data: " + data + "\nStatus: " + status);
 			});
 			ShowModule();
 		}
@@ -106,7 +124,7 @@ var modulos = (function(){
 		var html="";
 		letter = ["a","b","c"];
 		for(let i=0;i<3;i++)
-			html+="<span><div class='ui-radio'><input type='radio' name='moduleAns' value='"+i+"'></div> "+letter[i]+") "+respuestasTxt[i]["text"]+"</span><br>";
+			html+="<span name='"+i+"'><div class='ui-radio'><input type='radio' name='moduleAns' value='"+i+"'></div> "+letter[i]+") "+respuestasTxt[i]["text"]+"</span><br>";
 
 		$("#respuestas-cont").html(html);
 
@@ -117,67 +135,73 @@ var modulos = (function(){
 	}
 
 	function SendAnswer(result){
-		$.post(url+"saveResult.php",{usuario_id: localStorage.user_id, pregunta_id:moduleData[questIndex]["id"], resultado:result}, function(data, status){
-        			console.log("Data: " + data + "\nStatus: " + status);
+		$.post(url+"saveResult.php",{usuario_id: localStorage.user_id, pregunta_id:moduleData[questIndex]["id"], resultado:result, modulo_id:module["id"]}, function(data, status){
+			console.log("Data: " + data + "\nStatus: " + status);
 		});
+
+		if(estadoModulo["questIndex"]==estadoModulo["cantQuest"]-1){
+			console.log("saveResult_modulos_completos");
+			$.post(url+"saveResult_modulos_completos.php",{usuario_id: localStorage.user_id, modulo_id:module["id"]}, function(data, status){
+				console.log("Data: " + data + "\nStatus: " + status);
+			});
+		}
 	}
 
 	function SetImgButtons(){
-			$(".moduleImg").unbind('click').click( function(){	
-				$("#result-signal").show();
-				if (respuestasImg[$(this).val()]["val"]) {
-					$(this).css("background","chartreuse");
-					$("#result-signal img").attr("src","img/correcto.png");
-					SendAnswer(1);
-					estadoModulo["correct"]++;
-					correctasSet++;
-				}else{
-					$(this).css("background","red");
-					$("#result-signal img").attr("src","img/incorrecto.png");
-					SendAnswer(0);
-					$(".moduleImg").each(function(){
-						if(respuestasImg[$(this).val()]["val"]){
-							$(this).css("background","aquamarine");
-						}
-					});
-				}
+		$(".moduleImg").unbind('click').click( function(){	
+			$("#result-signal").show();
+			if (respuestasImg[$(this).val()]["val"]) {
+				$(this).css("background","chartreuse");
+				$("#result-signal img").attr("src","img/correcto.png");
+				SendAnswer(1);
+				estadoModulo["correct"]++;
+				correctasSet++;
+			}else{
+				$(this).css("background","red");
+				$("#result-signal img").attr("src","img/incorrecto.png");
+				SendAnswer(0);
+				$(".moduleImg").each(function(){
+					if(respuestasImg[$(this).val()]["val"]){
+						$(this).css("background","aquamarine");
+					}
+				});
+			}
 			questIndex++;
 			estadoModulo["questIndex"] = questIndex;
 			localStorage.setItem("estadoModulos", JSON.stringify(estadoModulos));
 			console.log("qIndex: "+questIndex);
 			$(".moduleImg").css("pointer-events","none");
 			setTimeout(function(){
-					$(".moduleImg").css("pointer-events","auto");					
-					$(".moduleImg").each(function(){
-						$(this).css("background","transparent");
-					});
-					$("#result-signal").hide();
-					setPregunta();
-				},3000);
-			});
+				$(".moduleImg").css("pointer-events","auto");					
+				$(".moduleImg").each(function(){
+					$(this).css("background","transparent");
+				});
+				$("#result-signal").hide();
+				setPregunta();
+			},3000);
+		});
 
 	}
 
-	function SetRadioButtons(){
-		$('input[type=radio][name=moduleAns]').change(function() {
+	function SetRadioOption(elem){
 			console.log(respuestasTxt);
 			$("#result-signal").show();
-			if (respuestasTxt[$(this).val()]["val"]) {
-				//$(this).parents('span').css("background","chartreuse");
-				$(this).parents('span').addClass("answer_correct");
+			if (respuestasTxt[elem.val()]["val"]) {
+				//elem.parents('span').css("background","chartreuse");
+				elem.parents('span').addClass("answer_correct");
 				$("#result-signal img").attr("src","img/correcto.png");
 				SendAnswer(1);
 				estadoModulo["correct"]++;
 				correctasSet++;
 			}else{
-				//$(this).parents('span').css("background","red");
-				$(this).parents('span').addClass("answer_incorrect");
+				//elem.parents('span').css("background","red");
+				elem.parents('span').addClass("answer_incorrect");
 				$("#result-signal img").attr("src","img/incorrecto.png");
 				SendAnswer(0);
 				$('input[type=radio][name=moduleAns]').each(function(){
-					if(respuestasTxt[$(this).val()]["val"]){
-						//$(this).parents('span').css("background","aquamarine");
-						$(this).parents('span').addClass("answer_correct");
+					if(respuestasTxt[elem.val()]["val"]){
+						//elem.parents('span').css("background","aquamarine");
+						elem.parents('span').addClass("answer_correct");
 					}
 				});
 			}
@@ -189,14 +213,25 @@ var modulos = (function(){
 			setTimeout(function(){
 				$("#respuestas").css("pointer-events","auto");
 				$('input[type=radio][name=moduleAns]').each(function(){
-					//$(this).parents('span').css("background","white");
-					$(this).parents('span').removeClass("answer_correct");
-					$(this).parents('span').removeClass("answer_incorrect");
-					$(this).prop( "checked", false );
+					//elem.parents('span').css("background","white");
+					elem.parents('span').removeClass("answer_correct");
+					elem.parents('span').removeClass("answer_incorrect");
+					elem.prop( "checked", false );
 				});
 				$("#result-signal").hide();
 				setPregunta();
 			},3000);
+	}
+
+	function SetRadioButtons(){
+		$('input[type=radio][name=moduleAns]').change(function() {
+			SetRadioOption($(this));
+		});
+
+		$('#respuestas-cont span').unbind('click').click( function(){
+			$('input[type=radio][value='+$(this).attr('name')+']').attr('checked',true);
+			SetRadioOption($('input[type=radio][value='+$(this).attr('name')+']'));
+		//$('input:radio[name=cols]'+" #"+newcol).attr('checked',true);	
 		});
 	}
 
@@ -234,9 +269,12 @@ var modulos = (function(){
 			let elem1 = $("#module-progress .slice.one");
 			let elem2 = $("#module-progress .slice.two");
 			elem2.removeClass("complete");
-			//let correct = 100 * estadoModulo["correct"]/estadoModulo["cantQuest"];
+
+			console.log(correctasSet+"/"+app.cantQSet);
+
 			let correct = 100 * correctasSet/app.cantQSet;
-			
+			if(estadoModulo["questIndex"]>=estadoModulo["cantQuest"])
+				correct = 100 * estadoModulo["correct"]/estadoModulo["cantQuest"];
 
 			$("#summary #correct").html("<h3><b>"+correct.toFixed(2)+"%</b></h3><h5>ACERTADAS</h5>");
 			$("#summary #incorrect").html("<h3><b>"+(100-correct).toFixed(2)+"%</b></h3><h5>ERRADAS</h5>");
@@ -293,14 +331,18 @@ var modulos = (function(){
 				console.log(estadoModulos);
 
 				localStorage.setItem("estadoModulos", JSON.stringify(estadoModulos));
-				
+
 
 				questIndex = estadoModulo["questIndex"];
-				console.log(questIndex);				
-				if(questIndex%app.cantQSet==0){
+				if(questIndex%app.cantQSet==0&&estadoModulo["questIndex"]<estadoModulo["cantQuest"]){
 					videoDone=false;
 					nextSet=true;
+				}else{
+					videoDone=true;
+					nextSet=false;
 				}
+					
+
 
 				$("#content").removeClass("blue");
 				$("#content").addClass("white");
@@ -327,7 +369,7 @@ var modulos = (function(){
 				if(estadoModulos==null)
 					estadoModulos = [];
 			}
-			
+
 			return estadoModulos.find(function (obj) {
 				return obj.id === id;
 			});

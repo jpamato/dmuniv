@@ -83,6 +83,7 @@ var videos = (function(){
 						$("#video-state-"+id).text("COMPLETADO");
 						let correct = 100 * moduleState["correct"]/moduleState["cantQuest"];
 						console.log("correct: "+correct);
+						elem2.removeClass("complete");
 						SetCakePercent(correct,elem1,elem2);
 						/*if(correct<=50){
 							let val = 180+correct*0.01*360;
