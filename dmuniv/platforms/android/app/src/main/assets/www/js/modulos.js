@@ -219,6 +219,7 @@ var modulos = (function(){
 	}
 
 	function SetRadioOption(elem){
+			$("#respuestas").css("pointer-events","none");
 			console.log(respuestasTxt);
 			$("#result-signal").show();
 			$("#result-signal img").show(); 
@@ -244,8 +245,7 @@ var modulos = (function(){
 			questIndex++;
 			estadoModulo["questIndex"] = questIndex;
 			localStorage.setItem("estadoModulos", JSON.stringify(estadoModulos));
-			console.log("qIndex: "+questIndex);
-			$("#respuestas").css("pointer-events","none");
+			console.log("qIndex: "+questIndex);			
 			$("#modulo-next").unbind('click').click( function(){
 				$("#respuestas").css("pointer-events","auto");
 				$('input[type=radio][name=moduleAns]').each(function(){
@@ -262,6 +262,8 @@ var modulos = (function(){
 				$("#modulo-next").show();
 				$("#result-signal img").hide(); 
 			}, 1500);
+			event.preventDefault();
+			event.stopImmediatePropagation();
 	}
 
 	function SetRadioButtons(){
