@@ -179,6 +179,7 @@ var modulos = (function(){
 	function SetImgButtons(){
 		$(".moduleImg").unbind('click').click( function(){	
 			$("#result-signal").show();
+			$("#result-signal img").show(); 
 			if (respuestasImg[$(this).val()]["val"]) {
 				$(this).css("background","chartreuse");
 				$("#result-signal img").attr("src","img/correcto.png");
@@ -208,6 +209,11 @@ var modulos = (function(){
 				$("#result-signal").hide();
 				setPregunta();
 			});
+			$("#modulo-next").hide();
+			setTimeout(function(){
+				$("#modulo-next").show();
+				$("#result-signal img").hide(); 
+			}, 1500);
 		});
 
 	}
@@ -215,6 +221,7 @@ var modulos = (function(){
 	function SetRadioOption(elem){
 			console.log(respuestasTxt);
 			$("#result-signal").show();
+			$("#result-signal img").show(); 
 			if (respuestasTxt[elem.val()]["val"]) {
 				//elem.parents('span').css("background","chartreuse");
 				elem.parents('span').addClass("answer_correct");
@@ -227,10 +234,10 @@ var modulos = (function(){
 				elem.parents('span').addClass("answer_incorrect");
 				$("#result-signal img").attr("src","img/incorrecto.png");
 				SendAnswer(0);
-				$('input[type=radio][name=moduleAns]').each(function(){
-					if(respuestasTxt[elem.val()]["val"]){
-						//elem.parents('span').css("background","aquamarine");
-						elem.parents('span').addClass("answer_correct");
+				$('input[type=radio][name=moduleAns]').each(function(){					
+					if(respuestasTxt[$(this).val()]["val"]){
+						//$(this).parents('span').css("background","aquamarine");
+						$(this).parents('span').addClass("answer_correct");
 					}
 				});
 			}
@@ -250,6 +257,11 @@ var modulos = (function(){
 				$("#result-signal").hide();
 				setPregunta();
 			});
+			$("#modulo-next").hide();
+			setTimeout(function(){
+				$("#modulo-next").show();
+				$("#result-signal img").hide(); 
+			}, 1500);
 	}
 
 	function SetRadioButtons(){
