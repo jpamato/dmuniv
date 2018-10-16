@@ -1,6 +1,6 @@
 var modulos = (function(){
 
-	var videoDone = false;
+	var videoPdfDone = false;
 	var player;
 
 	var module;
@@ -21,11 +21,22 @@ var modulos = (function(){
 	nextSet = true;
 
 	function Reset(){
-		videoDone=false;
+		//videoPdfDone=false;
+		setVideoPdf(false);
 		module = undefined;
 		moduleData = undefined;
 		//estadoModulos = undefined;
 		questIndex = 0;
+	}
+
+	function setVideoPdf(done){
+		if(done){
+			videoPdfDone=true;
+			$("#to-preguntas").css("pointer-events","auto");
+		}else{
+			videoPdfDone=false;
+			$("#to-preguntas").css("pointer-events","none");
+		}
 	}
 
 	function SetVideo(vId){
@@ -63,12 +74,20 @@ var modulos = (function(){
 		}	
 	}
 
+	function pdfNext(){
+		$.post(url+"saveResult_pdf.php",{usuario_id: localStorage.user_id, modulo_id:module["id"]}, function(data, status){
+			console.log("Data: " + data + "\nStatus: " + status);
+		});
+		setVideoPdf(true);
+		$("#header-next").hide();
+		setPregunta();
+	}
+
 	function LoadPDF(mId) {
 		html = "<iframe src='http://demotorescampus.com/pdf/web/viewer.html?file=modulo"+mId+".pdf' style='position: relative;   top: 0;  bottom: 0; left: 0;   width: 100%;   height: 700px;  border: 0'></iframe>";
-
 		console.log(html);
-
-		$("#pdfviewer").html(html);
+		$("#pdfviewer").html(html);		 
+		$("#header-next").show();
 	}
 
 	// autoplay video
@@ -83,11 +102,13 @@ var modulos = (function(){
 		console.log("onPlayerStateChange: ");
 		console.log(event);
 		if(event.data === 0) {          
-			videoDone=true;
+			//videoPdfDone=true;
+			setVideoPdf(true);
 			$.post(url+"saveResult_videos.php",{usuario_id: localStorage.user_id, modulo_id:module["id"]}, function(data, status){
 				console.log("Data: " + data + "\nStatus: " + status);
 			});
-			ShowModule();
+			//ShowModule();
+			setPregunta();
 		}
 	}
 
@@ -179,14 +200,14 @@ var modulos = (function(){
 			localStorage.setItem("estadoModulos", JSON.stringify(estadoModulos));
 			console.log("qIndex: "+questIndex);
 			$(".moduleImg").css("pointer-events","none");
-			setTimeout(function(){
+			$("#modulo-next").unbind('click').click( function(){
 				$(".moduleImg").css("pointer-events","auto");					
 				$(".moduleImg").each(function(){
 					$(this).css("background","transparent");
 				});
 				$("#result-signal").hide();
 				setPregunta();
-			},3000);
+			});
 		});
 
 	}
@@ -218,7 +239,7 @@ var modulos = (function(){
 			localStorage.setItem("estadoModulos", JSON.stringify(estadoModulos));
 			console.log("qIndex: "+questIndex);
 			$("#respuestas").css("pointer-events","none");
-			setTimeout(function(){
+			$("#modulo-next").unbind('click').click( function(){
 				$("#respuestas").css("pointer-events","auto");
 				$('input[type=radio][name=moduleAns]').each(function(){
 					//elem.parents('span').css("background","white");
@@ -228,7 +249,7 @@ var modulos = (function(){
 				});
 				$("#result-signal").hide();
 				setPregunta();
-			},3000);
+			});
 	}
 
 	function SetRadioButtons(){
@@ -244,7 +265,9 @@ var modulos = (function(){
 	}
 
 	function setPregunta(){
+		$(".module-cont").hide();
 		$("#navigator").show();
+		console.log("qIndex: "+estadoModulo["questIndex"]);
 		SetNavigatorPos("module-nav",estadoModulo["questIndex"]%app.cantQSet);
 		if(questIndex%app.cantQSet!=0||questIndex==0||nextSet){
 			$('#header-title').html("M"+module["id"]+" | PREGUNTA "+(questIndex+1));
@@ -316,16 +339,16 @@ var modulos = (function(){
 	}
 
 
-	function ShowModule(){
+	/*function ShowModule(){
 		$(".module-cont").hide();
-		if(videoDone){
+		if(videoPdfDone){
 			setPregunta();			
 		}else{
 			$("#videoplayer").show();
 			//$('#header-title').html("M&Oacute;DULO "+module["id"]);
 			LoadVideo(module["video"]);
 		}
-	}
+	}*/
 
 	return {//funcion de inicio de la aplicación
 		init : function(_url){
@@ -341,9 +364,14 @@ var modulos = (function(){
 			});
 
 			$("#to-preguntas").unbind('click').click( function(){	
-				ShowPDF();
+				setPregunta();
 			});
-			
+
+			$("#header-next").unbind('click').click( function(){	
+				pdfNext();
+			});
+
+			$("#header-next").hide();
 		},
 
 		reset : Reset,
@@ -377,10 +405,12 @@ var modulos = (function(){
 
 				questIndex = estadoModulo["questIndex"];
 				if(questIndex%app.cantQSet==0&&estadoModulo["questIndex"]<estadoModulo["cantQuest"]){
-					videoDone=false;
+					//videoPdfDone=false;
+					setVideoPdf(false);
 					nextSet=true;
 				}else{
-					videoDone=true;
+					//videoPdfDone=true;
+					setVideoPdf(true);
 					nextSet=false;
 				}
 					

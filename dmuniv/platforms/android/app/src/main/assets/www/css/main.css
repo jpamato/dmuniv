@@ -11,20 +11,20 @@
 }
 
 @font-face {
-    font-family: 'OpenSans';
-    src: url('fonts/OpenSans-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'OpenSans';
+	src: url('fonts/OpenSans-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 @font-face {
-    font-family: 'OpenSans-Light';
-    src: url('fonts/OpenSans-Light.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'OpenSans-Light';
+	src: url('fonts/OpenSans-Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 @font-face {
-    font-family: 'OpenSans-Bold';
-    src: url('fonts/OpenSans-Semibold.ttf') format('truetype');
+	font-family: 'OpenSans-Bold';
+	src: url('fonts/OpenSans-Semibold.ttf') format('truetype');
 }
 
 body
@@ -50,6 +50,14 @@ body
 	margin: auto;
 }
 
+#header-next{
+	padding: 10px;
+	font-size: 20px;
+	border: none;
+	background: transparent;
+	color: #224099;
+}
+
 .ui-panel{
 	top: 5.1vh;
 	min-height: 94%;
@@ -57,8 +65,8 @@ body
 
 #leftpanel{
 	background-color: rgba(255,255,255,0.9);
-    margin-top: -45px;
-    height: 100%;
+	margin-top: -45px;
+	height: 100%;
 }
 
 ul{
@@ -152,14 +160,14 @@ button.ui-btn{
 
 #navigator .dots {
 	display: inline-block;
-    width: 1.3vh;
-    height: 1.3vh;
-    border-radius: 1.3vh;
-    margin-right: 0.2vh;
-    margin-left: 1.2vh;
-    text-indent: -999em;
-    background-color: #BEBEBE;
-    vertical-align: middle;
+	width: 1.3vh;
+	height: 1.3vh;
+	border-radius: 1.3vh;
+	margin-right: 0.2vh;
+	margin-left: 1.2vh;
+	text-indent: -999em;
+	background-color: #BEBEBE;
+	vertical-align: middle;
 }
 
 #navigator .dots.done{

@@ -68,10 +68,12 @@ var app = {
 		});
 		
 		$( "#menu-btn-videos" ).unbind('click').click( function(){	
+			$("#header-next").hide();
 			videos.load();	
 		});
 
 		$( ".menu-btn-modulos" ).unbind('click').click( function(){
+			$("#header-next").hide();
 			let id = $(this).attr('name');
 			let moduloData = modulosData.find(function (obj) {
 				return obj.id === id;
@@ -83,6 +85,10 @@ var app = {
 			localStorage.removeItem("user_id");
 			localStorage.removeItem("estadoModulos");
 			location.reload();
+		});
+
+		$( "#summary-next" ).unbind('click').click( function(){	
+			videos.load();	
 		});
 
 		$('.contenidos').hide();
