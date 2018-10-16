@@ -89,33 +89,37 @@ iframe {
 }
 
 #summary{
-	padding: 70px 40px 0px 40px;
+	padding: 40px 40px 0px 40px;
 }
 
 #summary #correct{
-	float:right;
+	float: right;
 	color:chartreuse;
 	line-height: 0px;
-	text-align: left;
-	margin: 0px;
-	font-size: 2em;
+	/* text-align: left; */
+	/* margin: 0px; */
+	font-size: 1.7em;
+	width: 100%;
 }
 
 #summary #incorrect{
-	float:left;
+	/* float:left; */
 	color:red;
 	line-height: 0px;
-	text-align: left;
-	margin: -50px 0px 0px 50px;
-	font-size: 2em;
+	text-align: center;
+	/* margin: -50px 0px 0px 50px; */
+	font-size: 1.7em;
+	width: 100%;
 }
 
 
 #module-progress {
 	width: 48%;
-	//margin-left: 2%;
+	/* float: left; */	//
+	margin-left: 2%;
 	text-align: center;
 	margin: auto;
+	width: 100%;
 }
 
 .donut-chart.chart2 {
