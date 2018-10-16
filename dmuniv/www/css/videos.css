@@ -5,14 +5,18 @@
 #videos h4
 {
 	font-family: 'OpenSans-Light';
-    font-size: 1.1em;
-    letter-spacing: 0.05em;
-    line-height: 1.1em;
+	font-size: 0.8em;
+	letter-spacing: 0.05em;
+	line-height: 1.3em;
+	margin: 1px;
 }
 #videos h2
 {
 	font-family: 'OpenSans-Bold';
-	font-size: 1.8em;	
+	font-size: 1.6em;
+	line-height: 0.9em;
+	margin: 0px;
+	padding: 0px;
 }
 
 .html5-video-player {
@@ -21,7 +25,8 @@
 }
 .video-module-item{
 	padding: 0px;
-    height: 150px;
+	height: 150px;
+	margin: 0px;
 }
 
 .video-module-item-title{
@@ -37,7 +42,8 @@
 	float: right;
 	text-align: left;
 	padding-right: 2%;
-	width: 70%;
+	width: 77%;
+	margin-top: 17px;
 }
 
 .video-m-item-state{
@@ -53,7 +59,7 @@
 }
 
 .video-module-item-progress {
-	width: 37%;
+	width: 35%;
 	float: right;
 	margin-left: 2%;
 }
