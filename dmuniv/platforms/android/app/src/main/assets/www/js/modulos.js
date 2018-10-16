@@ -63,6 +63,14 @@ var modulos = (function(){
 		}	
 	}
 
+	function LoadPDF(mId) {
+		html = "<iframe src='http://demotorescampus.com/pdf/web/viewer.html?file=modulo"+mId+".pdf' style='position: relative;   top: 0;  bottom: 0; left: 0;   width: 100%;   height: 700px;  border: 0'></iframe>";
+
+		console.log(html);
+
+		$("#pdfviewer").html(html);
+	}
+
 	// autoplay video
 	function onPlayerReady(event) {
 		console.log("playerready: ");
@@ -287,13 +295,34 @@ var modulos = (function(){
 
 	}
 
+	function ShowModuleMenu(){
+		$(".module-cont").hide();
+		$('#header-title').html("M&Oacute;DULO "+module["id"]);
+		$("#modulos-menu").show();
+	}
+
+	function ShowVideo(){
+		$(".module-cont").hide();
+		$("#videoplayer").show();
+		//$('#header-title').html("M&Oacute;DULO "+module["id"]);
+		LoadVideo(module["video"]);
+	}
+
+	function ShowPDF(){
+		$(".module-cont").hide();
+		$("#pdfviewer").show();
+		//$('#header-title').html("M&Oacute;DULO "+module["id"]);
+		LoadPDF(module["id"]);
+	}
+
+
 	function ShowModule(){
 		$(".module-cont").hide();
 		if(videoDone){
 			setPregunta();			
 		}else{
 			$("#videoplayer").show();
-			$('#header-title').html("M&Oacute;DULO "+module["id"]);
+			//$('#header-title').html("M&Oacute;DULO "+module["id"]);
 			LoadVideo(module["video"]);
 		}
 	}
@@ -302,6 +331,19 @@ var modulos = (function(){
 		init : function(_url){
 			$('#summary').hide();
 			url = _url;
+
+			$("#to-videoplayer").unbind('click').click( function(){	
+				ShowVideo();
+			});
+
+			$("#to-pdfviewer").unbind('click').click( function(){	
+				ShowPDF();
+			});
+
+			$("#to-preguntas").unbind('click').click( function(){	
+				ShowPDF();
+			});
+			
 		},
 
 		reset : Reset,
@@ -358,7 +400,8 @@ var modulos = (function(){
 
 				$('#modulos').show();
 				$('#leftpanel').panel( "close" );
-				ShowModule();
+				//ShowModule();
+				ShowModuleMenu();
 			});		
 		},
 
