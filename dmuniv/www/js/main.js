@@ -54,12 +54,12 @@ var app = {
 
 	menuInit: function(modulosData){
 
-		let html = "<li id='menu-btn-videos'>VIDEOS</li>";
+		let html = "<li id='menu-btn-videos'>INICIO</li>";
 
 		for(let i=0;i<modulosData.length;i++)
 			html+="<li class='menu-btn-modulos' name='"+modulosData[i]["id"]+"'>M&Oacute;DULO "+(i+1)+"</li>";
 
-		html+="<li id='menu-btn-resultados'>RESULTADOS</li><li id='menu-btn-salir'>SALIR</li>";
+		html+="<li id='menu-btn-salir'>SALIR</li>";
 
 		$("#leftpanel ul").html(html);
 
