@@ -391,8 +391,13 @@ var modulos = (function(){
 		reset : Reset,
 
 		load : function(m){
-			module = m;
 
+			if(m["blocked"]===true)
+				return;
+
+			module = m;
+			console.log("aca");
+			console.log(m);
 			$.getJSON( url+"getModulo.php?id="+m["id"], function( data ) {
 				console.log(data);
 				moduleData = data["preguntas"];

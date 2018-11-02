@@ -56,8 +56,12 @@ var app = {
 
 		let html = "<li id='menu-btn-videos'>INICIO</li>";
 
-		for(let i=0;i<modulosData.length;i++)
-			html+="<li class='menu-btn-modulos' name='"+modulosData[i]["id"]+"'>M&Oacute;DULO "+(i+1)+"</li>";
+		for(let i=0;i<modulosData.length;i++){
+			let blocked="";
+			if(modulosData[i]["blocked"]===true)
+				blocked="blocked";
+			html+="<li class='menu-btn-modulos "+blocked+"' name='"+modulosData[i]["id"]+"'>M&Oacute;DULO "+(i+1)+"</li>";
+		}
 
 		html+="<li id='menu-btn-salir'>SALIR</li>";
 

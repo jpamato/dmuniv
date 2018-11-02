@@ -7,14 +7,19 @@ var videos = (function(){
 			modulosData = mData;
 			console.log(modulosData);
 			let html="";
+			console.log()
 			for(let modulo of modulosData){
+				let blocked="play2";
+				if(modulo["blocked"]===true)
+					blocked = "blocked";
+				
 				html+="<li class='video-module-item'><div class='video-module-item-title'>"+
 					"<div class='video-module-item-title-cont'><h2 class='video-m-item-num'>"+
 					"M&oacute;dulo "+modulo["id"]+"</h2><h4 class='video-m-item-desc'>"+modulo["nombre"]+
 					"<h4 id='video-state-"+modulo["id"]+"' class='video-m-item-state'>POR INICIAR</h4></div></div>"+
 					"<div id='video-progress-"+modulo["id"]+"' class='video-module-item-progress unviewed'><div class='donut-chart chart1'>"+
 					"<div class='slice one'></div><div class='slice two'></div><div class='chart-center'>"+
-					"<button class='video-m-play-btn ui-btn ui-shadow ui-corner-all' name='"+modulo["id"]+"'><img src='img/play2.png'></button>"+
+					"<button class='video-m-play-btn ui-btn ui-shadow ui-corner-all' name='"+modulo["id"]+"'><img src='img/"+blocked+".png'></button>"+
 					"</div></div></div></li>";			
 			}
 

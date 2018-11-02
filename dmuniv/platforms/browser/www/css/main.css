@@ -176,3 +176,8 @@ button.ui-btn{
 	border-radius: 1.3vh;
 	background-color: #224099;
 }
+
+#leftpanel li.blocked {
+	color: #777;
+	background: #555;
+}

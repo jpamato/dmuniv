@@ -145,3 +145,7 @@ button.ui-btn.video-m-play-btn{
 	height: 60%;
 	margin: auto;
 }
+
+.video-m-play-btn .blocked{
+	background-color:red;
+}
