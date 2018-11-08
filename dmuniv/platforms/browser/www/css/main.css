@@ -178,6 +178,31 @@ button.ui-btn{
 }
 
 #leftpanel li.blocked {
-	color: #777;
-	background: #555;
+	color: #afd8e1;
+	/* background: #555; */
+}
+
+.logo-azul img
+{
+	display: none;
+	width: 180px;
+	float: left;
+	margin: 40px;
+}
+#modulos-menu button {
+    background: none;
+    border: none;
+    width: 100%;
+    float: left;
+}
+#modulos-menu img {
+    width:100px;
+    display:;
+}
+.lineaSeparacion
+{
+	width: 100%;
+	height:20px;
+	background-image:url("../img/linea.jpg");
+	float: left;
 }

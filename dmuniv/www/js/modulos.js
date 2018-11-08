@@ -84,10 +84,14 @@ var modulos = (function(){
 	}
 
 	function LoadPDF(mId) {
-		html = "<iframe src='http://demotorescampus.com/pdf/web/viewer.html?file=modulo"+mId+".pdf' style='position: relative;   top: 0;  bottom: 0; left: 0;   width: 100%;   height: 700px;  border: 0'></iframe>";
+		html = "<iframe src='http://demotorescampus.com/pdf/web/viewer.html?file=modulo"+mId+".pdf' style='position: relative;   top: 0;  bottom: 0; left: 0;   width: 100%;   height: 566px;  border: 0'></iframe><div class='pdf-next-button' id='header-next-button'><img src='img/siguiente.png' /></div>";
 		console.log(html);
 		$("#pdfviewer").html(html);		 
 		$("#header-next").show();
+		
+		$("#header-next-button").unbind('click').click( function(){	
+				pdfNext();
+			});
 	}
 
 	// autoplay video
@@ -182,13 +186,13 @@ var modulos = (function(){
 			$("#result-signal img").show(); 
 			if (respuestasImg[$(this).val()]["val"]) {
 				$(this).css("background","chartreuse");
-				$("#result-signal img").attr("src","img/correcto.png");
+				$("#result-img img").attr("src","img/correcto.png");
 				SendAnswer(1);
 				estadoModulo["correct"]++;
 				correctasSet++;
 			}else{
 				$(this).css("background","red");
-				$("#result-signal img").attr("src","img/incorrecto.png");
+				$("#result-img img").attr("src","img/incorrecto.png");
 				SendAnswer(0);
 				$(".moduleImg").each(function(){
 					if(respuestasImg[$(this).val()]["val"]){
@@ -209,10 +213,11 @@ var modulos = (function(){
 				$("#result-signal").hide();
 				setPregunta();
 			});
-			$("#modulo-next").hide();
+			//$("#modulo-next").hide();
 			setTimeout(function(){
+				$("#result-signal").show();
 				$("#modulo-next").show();
-				$("#result-signal img").hide(); 
+				$("#result-img").hide(); 
 			}, 1500);
 		});
 
@@ -222,18 +227,18 @@ var modulos = (function(){
 			$("#respuestas").css("pointer-events","none");
 			console.log(respuestasTxt);
 			$("#result-signal").show();
-			$("#result-signal img").show(); 
+			$("#result-img").show(); 
 			if (respuestasTxt[elem.val()]["val"]) {
 				//elem.parents('span').css("background","chartreuse");
 				elem.parents('span').addClass("answer_correct");
-				$("#result-signal img").attr("src","img/correcto.png");
+				$("#result-img img").attr("src","img/correcto.png");
 				SendAnswer(1);
 				estadoModulo["correct"]++;
 				correctasSet++;
 			}else{
 				//elem.parents('span').css("background","red");
 				elem.parents('span').addClass("answer_incorrect");
-				$("#result-signal img").attr("src","img/incorrecto.png");
+				$("#result-img img").attr("src","img/incorrecto.png");
 				SendAnswer(0);
 				$('input[type=radio][name=moduleAns]').each(function(){					
 					if(respuestasTxt[$(this).val()]["val"]){
@@ -259,8 +264,10 @@ var modulos = (function(){
 			});
 			$("#modulo-next").hide();
 			setTimeout(function(){
+				$("#result-signal").show();
 				$("#modulo-next").show();
-				$("#result-signal img").hide(); 
+				$("#result-img").hide();
+				//$("#result-signal img").hide(); 
 			}, 1500);
 			event.preventDefault();
 			event.stopImmediatePropagation();
@@ -382,6 +389,10 @@ var modulos = (function(){
 			});
 
 			$("#header-next").unbind('click').click( function(){	
+				pdfNext();
+			});
+			
+			$("#header-next-button").unbind('click').click( function(){	
 				pdfNext();
 			});
 
