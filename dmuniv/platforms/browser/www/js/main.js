@@ -33,11 +33,11 @@ var app = {
 	// Bind any cordova events here. Common events are:
 	// 'pause', 'resume', etc.
 	onDeviceReady: function() {
-		$.getJSON( app.mainURL+"getModulos.php", function( data ) {
+		$.getJSON( app.mainURL+"getModulos.php?usuario_id="+localStorage.user_id, function( data ) {
 			console.log(data);
 			app.modulosData = data["modulos"];
 			app.appInit();
-		});			
+		});
 	},
 
 	appInit: function(){		
