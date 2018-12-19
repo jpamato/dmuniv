@@ -1,10 +1,10 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "DMUniv",
-  "short_name": "DMUniv",
-  "version": "com.yaguar.dmuniv",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "name": "demotores campus",
+  "short_name": "demotores campus",
+  "version": "com.pontura.demotores",
+  "description": "demotores campus.",
   "author": "Apache Cordova Team",
   "icons": [],
   "start_url": "index.html"

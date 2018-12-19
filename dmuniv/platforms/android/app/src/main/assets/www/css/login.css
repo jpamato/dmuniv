@@ -73,13 +73,14 @@
 }
 
 #login .cont-footer{
-	position: absolute;
+	/* position: absolute; */
 	left: 0px;
-	/* top: 70%; */
+	top: 438px;
 	right: 0px;
-	bottom: 0px;
+	/* bottom: 0px; */
 	width: 400px;
 	height: 150px;
-	/* text-align: center; */
+	text-align: center;
 	margin: auto;
+	margin-top: 50px;
 }
