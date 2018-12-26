@@ -1,6 +1,8 @@
 #playlist{
 	text-align: center;
-	padding-top: 5vh;
+	height: 100%;
+	width: 100%;
+	margin: auto;
 }
 #playlist h4
 {
@@ -57,8 +59,7 @@
 }
 
 #playlist-player{
-	width: 640px;
-	height: 360px;
+	width: 100%;
 	/*height: 90%;
 	padding: 25vh 0px;*/
 }

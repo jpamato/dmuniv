@@ -37,6 +37,8 @@ var playlist = (function(){
 		if(player!=undefined){
 			console.log(player["b"]["b"]["videoId"]);
 			if(player["b"]["b"]["videoId"]==vId){
+				$("#playlist ul").hide();
+				$("#playlist-videoplayer").show();
 				player.playVideo();
 			}else{
 				SetVideo(vId);
@@ -84,7 +86,7 @@ var playlist = (function(){
 					});
 					
 					html+="<li class='playlist-item' name='"+video["youtubeId"]+"'>"+
-					"<img src='https://img.youtube.com/vi/"+video["youtubeId"]+"/sddefault.jpg'>"+
+					"<img src='https://img.youtube.com/vi/"+video["youtubeId"]+"/sddefault.jpg'><br>"+
 					//"<img src='"+info["thumbnail_url"]+"'>"+
 					"<h4></h4>"
 					"</li>";
