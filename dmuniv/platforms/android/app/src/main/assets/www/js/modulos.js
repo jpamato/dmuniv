@@ -401,6 +401,12 @@ var modulos = (function(){
 
 		reset : Reset,
 
+		stopVideo : function(){
+			if(player!=undefined){
+				player.stopVideo();
+			}
+		},
+
 		load : function(m){
 
 			if(m["blocked"]===true)

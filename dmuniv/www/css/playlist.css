@@ -1,0 +1,74 @@
+#playlist{
+	text-align: center;
+	padding-top: 5vh;
+}
+#playlist h4
+{
+	font-family: 'OpenSans-Light';
+	font-size: 1.25em;
+	letter-spacing: 0.05em;
+	/* line-height: 1.3em; */
+	margin: 1px;
+	float: right;
+	width: 50%;
+	text-align: left;
+	padding-top: 10%;;
+}
+#playlist h2
+{
+	font-family: 'OpenSans-Bold';
+	font-size: 1.6em;
+	line-height: 0.9em;
+	margin: 0px;
+	padding: 0px;
+}
+
+.html5-video-player {
+	width:800px;
+	height:600px;
+}
+.playlist-item{
+	padding: 0px;
+	height: 240px;
+	margin: 0px;
+	margin-bottom: 10px;
+	background-color: rgba(0,0,0,0.1);
+}
+
+.playlist-item-title{
+	float: left;
+	/* background: green; */
+	color: white;
+	line-height: 0px;
+	text-align: right;
+	width: 56%;
+}
+
+.playlist-item img{
+	height: 100%;
+	float: left;
+}
+
+#playlist-videoplayer
+{
+	width:100%;
+	height:100%;
+	margin-top: 20px;
+}
+
+#playlist-player{
+	width: 640px;
+	height: 360px;
+	/*height: 90%;
+	padding: 25vh 0px;*/
+}
+
+#playlist-back{
+	font-size: 20px;
+	border: none;
+	background: transparent;
+	color: white;
+	position: absolute;
+	left: 14px;
+   	margin-top: -30px;
+}

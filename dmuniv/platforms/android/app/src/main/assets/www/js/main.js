@@ -44,6 +44,7 @@ var app = {
 		login.init(this.mainURL);
 		modulos.init(this.mainURL);
 		videos.init(this.modulosData);
+		playlist.init(this.mainURL);
 		this.menuInit(this.modulosData);
 		setTimeout(function(){ $("#splash").hide(); }, 1000);
 	},
@@ -63,6 +64,7 @@ var app = {
 			html+="<li class='menu-btn-modulos "+blocked+"' name='"+modulosData[i]["id"]+"'>M&Oacute;DULO "+(i+1)+"</li>";
 		}
 
+		html+="<li id='menu-btn-playlist'>VIDEOS</li>";
 		html+="<li id='menu-btn-salir'>SALIR</li>";
 
 		$("#leftpanel ul").html(html);
@@ -73,10 +75,14 @@ var app = {
 		
 		$( "#menu-btn-videos" ).unbind('click').click( function(){	
 			$("#header-next").hide();
+			modulos.stopVideo();
+			playlist.stopVideo();
 			videos.load();	
 		});
 
 		$( ".menu-btn-modulos" ).unbind('click').click( function(){
+			modulos.stopVideo();
+			playlist.stopVideo();
 			$("#header-next").hide();
 			let id = $(this).attr('name');
 			let moduloData = modulosData.find(function (obj) {
@@ -85,7 +91,16 @@ var app = {
 			modulos.load(moduloData);
 		});
 
-		$( "#menu-btn-salir" ).unbind('click').click( function(){	
+		$( "#menu-btn-playlist" ).unbind('click').click( function(){	
+			$("#header-next").hide();
+			modulos.stopVideo();
+			playlist.stopVideo();
+			playlist.load();	
+		});
+
+		$( "#menu-btn-salir" ).unbind('click').click( function(){
+			modulos.stopVideo();
+			playlist.stopVideo();
 			localStorage.removeItem("user_id");
 			localStorage.removeItem("estadoModulos");
 			location.reload();
