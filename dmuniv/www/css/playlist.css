@@ -1,20 +1,21 @@
 #playlist{
 	text-align: center;
-	height: 100%;
-	width: 100%;
-	margin: auto;
+	padding-top: 5vh;
 }
 #playlist h4
 {
 	font-family: 'OpenSans-Light';
-	font-size: 1.25em;
-	letter-spacing: 0.05em;
+	font-size: 0.9em;
+	/* letter-spacing: 0.05em; */
 	/* line-height: 1.3em; */
-	margin: 1px;
-	float: right;
-	width: 50%;
+	padding-top: 10px;
+	padding-bottom: 33px;
+	color: white;
+	float: left;
+	width: 100%;
 	text-align: left;
-	padding-top: 10%;;
+	padding-left: 1px;
+	margin: 0px;
 }
 #playlist h2
 {
@@ -30,11 +31,14 @@
 	height:600px;
 }
 .playlist-item{
+	width:100%;
 	padding: 0px;
-	height: 240px;
+	/* height: 258px; */
+	width: 100%;
 	margin: 0px;
-	margin-bottom: 10px;
-	background-color: rgba(0,0,0,0.1);
+	/* margin-bottom: 0px; */
+	/* padding-bottom: 105px; */
+	/* background-color: rgba(0,0,0,0.1); */
 }
 
 .playlist-item-title{
@@ -47,7 +51,7 @@
 }
 
 .playlist-item img{
-	height: 100%;
+	height: 174px;
 	float: left;
 }
 
@@ -59,7 +63,8 @@
 }
 
 #playlist-player{
-	width: 100%;
+	/* width: 640px; */
+	height: 360px;
 	/*height: 90%;
 	padding: 25vh 0px;*/
 }
