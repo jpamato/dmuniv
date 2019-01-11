@@ -165,7 +165,6 @@ function CreateNavigator(divId,dotsNumber){
 
 	html+="</ul>";
 	$("#navigator").html(html);
-	console.log("aca");
 }
 
 function SetNavigatorPos(divId,dotNumber){

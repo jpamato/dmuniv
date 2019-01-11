@@ -22,11 +22,18 @@ var videos = (function(){
 					"<button class='video-m-play-btn ui-btn ui-shadow ui-corner-all' name='"+modulo["id"]+"'><img src='img/"+blocked+".png'></button>"+
 					"</div></div></div></li>";			
 			}
-
+				html+="<li class='video-module-item'><h2 class='video-all-in-main' id='all_viodeos'><hr><br>Biblioteca de Videos<br></h2></li>";		
 			$("#videos ul").html(html);
 
 			for(let modulo of modulosData)
 				this.setProgress(modulo["id"]);
+			
+			$( "#all_viodeos" ).unbind('click').click( function(){	
+			$("#header-next").hide();
+			modulos.stopVideo();
+			playlist.stopVideo();
+			playlist.load();	
+			});
 
 			$(".video-m-play-btn").unbind('click').click( function(){
 				let id = $(this).attr('name');
@@ -48,7 +55,7 @@ var videos = (function(){
 
 			});	
 		},
-
+		
 		load : function(){
 			$("#content").removeClass();
 			$("#content").addClass("ui-content");
