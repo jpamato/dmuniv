@@ -7,9 +7,6 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.yaguar.dmuniv"
-    },
     "cordova-plugin-browsersync": {
       "PACKAGE_NAME": "com.yaguar.dmuniv"
     }
