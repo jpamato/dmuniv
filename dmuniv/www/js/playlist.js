@@ -108,7 +108,7 @@ var playlist = (function(){
 			$("#content").addClass("ui-content");
 			$("#content").addClass("blue");
 			$('.contenidos').hide();
-			$('#header-title').html("VIDEOS");
+			$('#header-title').html("NOVEDADES");
 			$('#playlist').show();
 			$('#leftpanel').panel( "close" );
 			$("#playlist ul").show();

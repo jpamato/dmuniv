@@ -46,7 +46,7 @@ var app = {
 		videos.init(this.modulosData);
 		playlist.init(this.mainURL);
 		this.menuInit(this.modulosData);
-		setTimeout(function(){ $("#splash").hide(); }, 1000);
+		setTimeout(function(){ $("#splash").hide(); }, 3000);
 	},
 	
 	appExit: function(){
@@ -64,7 +64,7 @@ var app = {
 			html+="<li class='menu-btn-modulos "+blocked+"' name='"+modulosData[i]["id"]+"'>M&Oacute;DULO "+(i+1)+"</li>";
 		}
 
-		html+="<li id='menu-btn-playlist'>VIDEOS</li>";
+		html+="<li id='menu-btn-playlist'>NOVEDADES</li>";
 		html+="<li id='menu-btn-salir'>SALIR</li>";
 
 		$("#leftpanel ul").html(html);

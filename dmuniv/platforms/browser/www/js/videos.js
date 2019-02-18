@@ -22,13 +22,14 @@ var videos = (function(){
 					"<button class='video-m-play-btn ui-btn ui-shadow ui-corner-all' name='"+modulo["id"]+"'><img src='img/"+blocked+".png'></button>"+
 					"</div></div></div></li>";			
 			}
-				html+="<li class='video-module-item'><h2 class='video-all-in-main' id='all_viodeos'><hr><br>Biblioteca de Videos<br></h2></li>";		
+				html+="<li class='video-module-item'><h2 class='video-all-in-main' id='all_viodeos'><hr><br>Novedades<br></h2></li>";		
 			$("#videos ul").html(html);
 
 			for(let modulo of modulosData)
 				this.setProgress(modulo["id"]);
 			
 			$( "#all_viodeos" ).unbind('click').click( function(){	
+			$('#header-title').html("NOVEDADES");
 			$("#header-next").hide();
 			modulos.stopVideo();
 			playlist.stopVideo();
@@ -61,7 +62,7 @@ var videos = (function(){
 			$("#content").addClass("ui-content");
 			$("#content").addClass("blue");
 			$('.contenidos').hide();
-			$('#header-title').html("VIDEOS");
+			$('#header-title').html("INICIO");
 			$('#videos').show();
 			$('#leftpanel').panel( "close" );
 
