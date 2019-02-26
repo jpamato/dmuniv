@@ -6,10 +6,11 @@ var videos = (function(){
 		init : function(mData){
 			modulosData = mData;
 			console.log(modulosData);
-			let html="";
-			console.log()
-			for(let modulo of modulosData){
-				let blocked="play2";
+			var html="";
+			plugin.logcat.sendLogs(modulosData);
+			modulosData.forEach(function(modulo){
+			//for(var modulo in modulosData){
+				var blocked="play2";
 				if(modulo["blocked"]===true)
 					blocked = "blocked";
 				
@@ -21,12 +22,14 @@ var videos = (function(){
 					"<div class='slice one'></div><div class='slice two'></div><div class='chart-center'>"+
 					"<button class='video-m-play-btn ui-btn ui-shadow ui-corner-all' name='"+modulo["id"]+"'><img src='img/"+blocked+".png'></button>"+
 					"</div></div></div></li>";			
-			}
+			});
 				html+="<li class='video-module-item'><h2 class='video-all-in-main' id='all_viodeos'><hr><br>Novedades<br></h2></li>";		
 			$("#videos ul").html(html);
 
-			for(let modulo of modulosData)
-				this.setProgress(modulo["id"]);
+			//for(var modulo in modulosData)
+			modulosData.forEach(function(modulo){
+				videos.setProgress(modulo["id"]);
+			});
 			
 			$( "#all_viodeos" ).unbind('click').click( function(){	
 			$('#header-title').html("NOVEDADES");
@@ -37,20 +40,20 @@ var videos = (function(){
 			});
 
 			$(".video-m-play-btn").unbind('click').click( function(){
-				let id = $(this).attr('name');
-				let estadoModulo = modulos.getModuleState(id);
+				var id = $(this).attr('name');
+				var estadoModulo = modulos.getModuleState(id);
 				console.log(estadoModulo);
 				if(estadoModulo!=undefined){
 					if(estadoModulo["questIndex"]<estadoModulo["cantQuest"]){
-						let moduloData = modulosData.find(function (obj) {
+						var moduloData = modulosData.filter(function (obj) {
 							return obj.id === id;
-						});
+						})[0];
 						modulos.load(moduloData);
 					}
 				}else{
-					let moduloData = modulosData.find(function (obj) {
+					var moduloData = modulosData.filter(function (obj) {
 						return obj.id === id;
-					});
+					})[0];
 					modulos.load(moduloData);
 				}
 
@@ -66,21 +69,23 @@ var videos = (function(){
 			$('#videos').show();
 			$('#leftpanel').panel( "close" );
 
-			for(let modulo of modulosData)
-				this.setProgress(modulo["id"]);
+			modulosData.forEach(function(modulo){
+			//for(var modulo in modulosData)
+				videos.setProgress(modulo["id"]);
+			});
 		},
 
 		setProgress : function(id){
-			let moduleState = modulos.getModuleState(id);
+			var moduleState = modulos.getModuleState(id);
 			console.log("#video-progress-"+id+" .slice.one");
 
-			let elem1 = $("#video-progress-"+id+" .slice.one");
-			let elem2 = $("#video-progress-"+id+" .slice.two");
+			var elem1 = $("#video-progress-"+id+" .slice.one");
+			var elem2 = $("#video-progress-"+id+" .slice.two");
 			if(moduleState!=undefined){
-				let percent = 100 * moduleState["questIndex"]/moduleState["cantQuest"];
+				var percent = 100 * moduleState["questIndex"]/moduleState["cantQuest"];
 				console.log("percent: "+percent);
-				let elem1 = $("#video-progress-"+id+" .slice.one");
-				let elem2 = $("#video-progress-"+id+" .slice.two");
+				var elem1 = $("#video-progress-"+id+" .slice.one");
+				var elem2 = $("#video-progress-"+id+" .slice.two");
 				//elem1.css("background","red");
 
 				if(percent>0&&percent<100){
@@ -94,19 +99,19 @@ var videos = (function(){
 				}else{
 					if(!elem1.hasClass("done")){
 						$("#video-state-"+id).text("COMPLETADO");
-						let correct = 100 * moduleState["correct"]/moduleState["cantQuest"];
+						var correct = 100 * moduleState["correct"]/moduleState["cantQuest"];
 						console.log("correct: "+correct);
 						elem2.removeClass("complete");
 						SetCakePercent(correct,elem1,elem2);
 						/*if(correct<=50){
-							let val = 180+correct*0.01*360;
+							var val = 180+correct*0.01*360;
 							elem2.css("background","red");
 							elem2.css("-webkit-transform","rotate("+val+"deg)");
 							elem2.css("transform","rotate("+val+"deg)");
 							elem1.css("-webkit-transform","rotate(270deg)");
 							elem1.css("transform","rotate(270deg)");						
 						}else if(correct<99){
-							let val = 270+(correct-50)*0.02*180;
+							var val = 270+(correct-50)*0.02*180;
 							elem2.css("background","green");
 							elem2.css("-webkit-transform","rotate(180deg)");
 							elem2.css("transform","rotate(180deg)");

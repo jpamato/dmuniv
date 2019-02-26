@@ -14,7 +14,7 @@ var login = (function(){
         			console.log("Data: " + data + "\nStatus: " + status);
 		});
 
-		/*let requestURL = url + "saveNewLogin.php?usuario_id=" + user_id;
+		/*var requestURL = url + "saveNewLogin.php?usuario_id=" + user_id;
 		$.get(requestURL, function(data, status){
 			if(data==0)
 						loginError();
@@ -31,9 +31,13 @@ var login = (function(){
 	return {//funcion de inicio de la aplicación
 		init : function(url_){
 			url = url_;
+			console.log("#ACA");
+			console.log(url);
 			$( "#login-form" ).submit(function( event ) {
 
-				let requestURL = url+ "loginUser.php?email=" + $("#login-form #user").val() + "&clave=" + $("#login-form #pass").val();
+				var requestURL = url+ "loginUser.php?email=" + $("#login-form #user").val() + "&clave=" + $("#login-form #pass").val();
+
+				console.log(requestURL);
 
 				$.get(requestURL, function(data, status){
 					if(data==0)

@@ -34,13 +34,16 @@ var app = {
 	// 'pause', 'resume', etc.
 	onDeviceReady: function() {
 		$.getJSON( app.mainURL+"getModulos.php?usuario_id="+localStorage.user_id, function( data ) {
-			console.log(data);
+			console.log(data["modulos"][0]["nombre"]);
 			app.modulosData = data["modulos"];
 			app.appInit();
 		});
 	},
 
-	appInit: function(){		
+	appInit: function(){
+		console.log("@ACA");
+		plugin.logcat.sendLogs();
+		plugin.logcat.sendLogs("@ACA");
 		login.init(this.mainURL);
 		modulos.init(this.mainURL);
 		videos.init(this.modulosData);
@@ -55,10 +58,10 @@ var app = {
 
 	menuInit: function(modulosData){
 
-		let html = "<li id='menu-btn-videos'>INICIO</li>";
+		var html = "<li id='menu-btn-videos'>INICIO</li>";
 
-		for(let i=0;i<modulosData.length;i++){
-			let blocked="";
+		for(var i=0;i<modulosData.length;i++){
+			var blocked="";
 			if(modulosData[i]["blocked"]===true)
 				blocked="blocked";
 			html+="<li class='menu-btn-modulos "+blocked+"' name='"+modulosData[i]["id"]+"'>M&Oacute;DULO "+(i+1)+"</li>";
@@ -84,10 +87,10 @@ var app = {
 			modulos.stopVideo();
 			playlist.stopVideo();
 			$("#header-next").hide();
-			let id = $(this).attr('name');
-			let moduloData = modulosData.find(function (obj) {
+			var id = $(this).attr('name');			
+			var moduloData = modulosData.filter(function (obj) {
 				return obj.id === id;
-			});
+			})[0];
 			modulos.load(moduloData);
 		});
 
@@ -143,13 +146,13 @@ function shuffle(a) {
 
 function SetCakePercent(percent,slice1,slice2){
 	if(percent<=50){
-		let val = 180+percent*0.01*360;
+		var val = 180+percent*0.01*360;
 		slice2.css("-webkit-transform","rotate("+val+"deg)");
 		slice2.css("transform","rotate("+val+"deg)");
 		slice1.css("-webkit-transform","rotate(270deg)");
 		slice1.css("transform","rotate(270deg)");
 	}else{
-		let val = 270+(percent-50)*0.02*180;
+		var val = 270+(percent-50)*0.02*180;
 		slice2.addClass("complete");
 		slice2.css("-webkit-transform","rotate(180deg)");
 		slice2.css("transform","rotate(180deg)");
@@ -159,8 +162,8 @@ function SetCakePercent(percent,slice1,slice2){
 }
 
 function CreateNavigator(divId,dotsNumber){
-	let html = "<ul><div class='dots done' id='p0'></div>";
-	for(let i=1;i<dotsNumber;i++)
+	var html = "<ul><div class='dots done' id='p0'></div>";
+	for(var i=1;i<dotsNumber;i++)
 		html+="<div class='dots' id='p"+i+"'></div>";	
 
 	html+="</ul>";

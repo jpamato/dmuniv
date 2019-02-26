@@ -14,5 +14,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-logcat": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/Murthy582/Cordova-Logcat.git"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

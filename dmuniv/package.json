@@ -10,7 +10,7 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "dependencies": {
-    "browser-sync": "^2.24.7",
+    "browser-sync": "^2.26.3",
     "cheerio": "^0.19.0",
     "cordova-android": "^7.0.0",
     "cordova-browser": "^5.0.4",
@@ -26,7 +26,8 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-browsersync": {}
+      "cordova-plugin-browsersync": {},
+      "cordova-plugin-logcat": {}
     },
     "platforms": [
       "browser",

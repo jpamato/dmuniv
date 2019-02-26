@@ -74,10 +74,12 @@ var playlist = (function(){
 				console.log(data);
 				videos = data["videos"];
 				console.log(videos);
-				let html="";
-				console.log()
-				for(let video of videos){
-					let info = {};
+				var html="";
+				videos.forEach(function(video){
+//				for(var video of videos){
+					var info = {};
+					console.log("AAA");
+					console.log(video["youtubeId"]);
 					$.getJSON( "https://noembed.com/embed?url=https://www.youtube.com/watch?v="+video["youtubeId"], function( data ) {
 						info = data;
 						console.log(info);
@@ -91,11 +93,11 @@ var playlist = (function(){
 					"<h4></h4>"
 					"</li>";
 				
-				}
+				});
 
 				$("#playlist ul").html(html);
 				$(".playlist-item").unbind('click').click( function(){
-					let id = $(this).attr('name');
+					var id = $(this).attr('name');
 					LoadVideo(id);	
 				});
 			});

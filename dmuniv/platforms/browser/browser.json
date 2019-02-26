@@ -12,12 +12,25 @@
     },
     "cordova-plugin-browsersync": {
       "PACKAGE_NAME": "com.yaguar.dmuniv"
+    },
+    "cordova-plugin-logcat": {
+      "PACKAGE_NAME": "com.yaguar.dmuniv"
     }
   },
   "dependent_plugins": {},
-  "modules": [],
+  "modules": [
+    {
+      "file": "plugins/cordova-plugin-logcat/www/logcat.js",
+      "id": "cordova-plugin-logcat.LogCat",
+      "pluginId": "cordova-plugin-logcat",
+      "clobbers": [
+        "plugin.logcat"
+      ]
+    }
+  ],
   "plugin_metadata": {
     "cordova-plugin-whitelist": "1.3.3",
-    "cordova-plugin-browsersync": "0.1.7"
+    "cordova-plugin-browsersync": "0.1.7",
+    "cordova-plugin-logcat": "0.0.1"
   }
 }

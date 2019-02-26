@@ -120,8 +120,8 @@ var modulos = (function(){
 		fotos
 
 		respuestasImg = [];
-		for(let i=0;i<2;i++){
-			let r = {
+		for(var i=0;i<2;i++){
+			var r = {
 				src:moduleData[questIndex]["imagen"+(i+1)],
 				val:i==0
 			}
@@ -131,7 +131,7 @@ var modulos = (function(){
 		shuffle(respuestasImg);
 
 		var html="";
-		for(let i=0;i<2;i++)
+		for(var i=0;i<2;i++)
 			html+="<button class='moduleImg' value='"+i+"'><img src='"+respuestasImg[i]["src"]+"'></button>";
 
 		$("#img-cont").html(html);
@@ -144,8 +144,8 @@ var modulos = (function(){
 
 	function setTextOptions(){
 		respuestasTxt = [];
-		for(let i=0;i<3;i++){
-			let r = {
+		for(var i=0;i<3;i++){
+			var r = {
 				text:moduleData[questIndex]["respuesta"+(i+1)],
 				val:i==0
 			}
@@ -156,7 +156,7 @@ var modulos = (function(){
 
 		var html="";
 		letter = ["a","b","c"];
-		for(let i=0;i<3;i++)
+		for(var i=0;i<3;i++)
 			html+="<span name='"+i+"'><div class='ui-radio'><input type='radio' name='moduleAns' value='"+i+"'></div> "+letter[i]+") "+respuestasTxt[i]["text"]+"</span><br>";
 
 		$("#respuestas-cont").html(html);
@@ -318,13 +318,13 @@ var modulos = (function(){
 			$("#summary #correct").text();
 			$("#summary #incorrect").text();
 
-			let elem1 = $("#module-progress .slice.one");
-			let elem2 = $("#module-progress .slice.two");
+			var elem1 = $("#module-progress .slice.one");
+			var elem2 = $("#module-progress .slice.two");
 			elem2.removeClass("complete");
 
 			console.log(correctasSet+"/"+app.cantQSet);
 
-			let correct = 100 * correctasSet/app.cantQSet;
+			var correct = 100 * correctasSet/app.cantQSet;
 			if(estadoModulo["questIndex"]>=estadoModulo["cantQuest"])
 				correct = 100 * estadoModulo["correct"]/estadoModulo["cantQuest"];
 
@@ -402,8 +402,9 @@ var modulos = (function(){
 		reset : Reset,
 
 		stopVideo : function(){
+			console.log(player);
 			if(player!=undefined){
-				player.stopVideo();
+				//player.stopVideo();
 			}
 		},
 
@@ -421,17 +422,17 @@ var modulos = (function(){
 				console.log(moduleData);
 
 
-				estadoModulo = estadoModulos.find(function (obj) {
+				estadoModulo = estadoModulos.filter(function (obj) {
 					return obj.id === m["id"];
-				});
+				})[0];
 
 				if(estadoModulo==undefined){
 					estadoModulo = {id:m["id"],questIndex:0,cantQuest:moduleData.length,correct:0};
 					estadoModulos.push(estadoModulo);
 					console.log("aca1: "+estadoModulo["id"]);
-					estadoModulo = estadoModulos.find(function (obj) {
+					estadoModulo = estadoModulos.filter(function (obj) {
 						return obj.id === m["id"];
-					});
+					})[0];
 				}
 
 				console.log(estadoModulos);
@@ -478,10 +479,18 @@ var modulos = (function(){
 				if(estadoModulos==null)
 					estadoModulos = [];
 			}
-
-			return estadoModulos.find(function (obj) {
+			
+			return estadoModulos.filter(function (obj) {
 				return obj.id === id;
-			});
+			})[0];
+
+			/*for(var modulo in estadoModulos){
+				if(modulo.id===id)
+					return modulo;
+			}
+			/*return estadoModulos.find(function (obj) {
+				return obj.id === id;
+			});*/
 		}
 	};
 })();
