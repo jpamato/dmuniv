@@ -115,6 +115,7 @@ var app = {
 		if(localStorage.user_id===undefined){
 			login.load();
 		}else{
+			$("#hamburguer").show();
 			$.post(this.mainURL+"saveNewLogin.php",{usuario_id: localStorage.user_id}, function(data, status){
         			console.log("Data: " + data + "\nStatus: " + status);
 			});

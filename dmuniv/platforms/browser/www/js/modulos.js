@@ -404,7 +404,7 @@ var modulos = (function(){
 		stopVideo : function(){
 			console.log(player);
 			if(player!=undefined){
-				//player.stopVideo();
+				player.stopVideo();
 			}
 		},
 
