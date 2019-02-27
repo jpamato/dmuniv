@@ -43,6 +43,7 @@ body
 #hamburguer{
 	font-size: 15px;
 	color: #224099;
+	display:none;
 }
 
 #header-title{

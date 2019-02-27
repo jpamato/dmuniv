@@ -78,8 +78,7 @@ var playlist = (function(){
 				videos.forEach(function(video){
 //				for(var video of videos){
 					var info = {};
-					console.log("AAA");
-					console.log(video["youtubeId"]);
+					//console.log(video["youtubeId"]);
 					$.getJSON( "https://noembed.com/embed?url=https://www.youtube.com/watch?v="+video["youtubeId"], function( data ) {
 						info = data;
 						console.log(info);

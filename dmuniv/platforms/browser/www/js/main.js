@@ -41,9 +41,6 @@ var app = {
 	},
 
 	appInit: function(){
-		console.log("@ACA");
-		plugin.logcat.sendLogs();
-		plugin.logcat.sendLogs("@ACA");
 		login.init(this.mainURL);
 		modulos.init(this.mainURL);
 		videos.init(this.modulosData);

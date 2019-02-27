@@ -10,10 +10,10 @@
     "cordova-plugin-browsersync": {
       "PACKAGE_NAME": "com.yaguar.dmuniv"
     },
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-logcat": {
       "PACKAGE_NAME": "com.yaguar.dmuniv"
     },
-    "cordova-plugin-logcat": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.yaguar.dmuniv"
     }
   },

@@ -6,7 +6,7 @@ var login = (function(){
 
 	function doLogin(uid){
 		user_id=uid;
-		console.log(user_id);
+		//console.log(user_id);
 		localStorage.setItem("user_id", user_id);
 		videos.load();		
 
@@ -21,6 +21,7 @@ var login = (function(){
 					else
 						doLogin(data);
     		});*/
+		$("#hamburguer").show();
 	}
 
 	function loginError(){
@@ -31,8 +32,6 @@ var login = (function(){
 	return {//funcion de inicio de la aplicación
 		init : function(url_){
 			url = url_;
-			console.log("#ACA");
-			console.log(url);
 			$( "#login-form" ).submit(function( event ) {
 
 				var requestURL = url+ "loginUser.php?email=" + $("#login-form #user").val() + "&clave=" + $("#login-form #pass").val();
